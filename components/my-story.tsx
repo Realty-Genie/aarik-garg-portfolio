@@ -120,7 +120,7 @@ export function MyStory() {
             className="relative bg-[#17130f] p-5 shadow-[24px_24px_0_rgba(23,19,15,0.18)] [clip-path:polygon(4%_0,100%_4%,96%_96%,72%_100%,28%_96%,0_100%,2%_18%)] sm:p-6"
           >
             <Image
-              src="/astro.png"
+              src="/mystory.png"
               alt="Aarik astronaut NICU artwork"
               width={1160}
               height={1355}
