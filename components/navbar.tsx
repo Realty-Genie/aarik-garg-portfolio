@@ -1,10 +1,10 @@
-const navItems = ["Home", "My Story", "Milestones", "Gallery"];
+const navItems = ["Home", "My Story", "Wishes", "Send a Wish"];
 
 const navLinks: Record<string, string> = {
   Home: "/",
   "My Story": "/my-story",
-  Milestones: "#",
-  Gallery: "#",
+  Wishes: "/wishes",
+  "Send a Wish": "/send-wish",
 };
 
 export function Navbar() {

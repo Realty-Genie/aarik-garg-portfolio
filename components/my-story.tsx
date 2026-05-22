@@ -70,12 +70,12 @@ export function MyStory() {
             id="my-story-title"
             className="mt-4 text-6xl font-black uppercase leading-[0.9] tracking-normal text-[#17130f] [font-family:var(--font-caveat),cursive] sm:text-7xl lg:text-8xl"
           >
-            Hi, I&apos;m Aarik.
+            I&apos;ve Arrived!
           </h2>
           <Scribble className="mt-5 h-10 w-72 text-[#d49b22]" />
 
           <div
-            className="relative mt-10 bg-[#fff6e8] px-7 py-8 text-xl font-semibold leading-9 text-[#302215] shadow-[16px_16px_0_rgba(23,19,15,0.16)] [clip-path:polygon(4%_0,100%_4%,96%_96%,74%_100%,28%_97%,0_100%,2%_20%)] [font-family:var(--font-libertinus),serif] sm:px-9 sm:text-2xl sm:leading-10"
+            className="relative mt-10 bg-[#fff6e8] px-7 py-8 text-xl font-semibold leading-9 text-[#302215] shadow-[16px_16px_0_rgba(23,19,15,0.16)] [clip-path:polygon(4%_0,100%_4%,96%_96%,74%_100%,28%_97%,0_100%,2%_20%)] [font-family:var(--font-comic-neue),cursive] sm:px-9 sm:text-2xl sm:leading-10"
           >
             <p>
               Once upon a time, a very tiny lion entered the world. That lion
@@ -131,7 +131,7 @@ export function MyStory() {
             <div
               className="mt-6 bg-[#f7e9d2] p-7 text-[#17130f] shadow-[8px_8px_0_#d49b22] [clip-path:polygon(3%_0,100%_7%,95%_100%,0_92%)]"
             >
-              <p className="text-4xl font-black italic leading-tight [font-family:var(--font-libertinus),serif]">
+              <p className="text-4xl font-black italic leading-tight [font-family:var(--font-comic-neue),serif]">
                 Tiny paws. Brave heart. A little lion learning how to roar.
                 <span className="text-[#d49b22]"> ♥</span>
               </p>

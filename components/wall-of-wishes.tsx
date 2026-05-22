@@ -196,7 +196,7 @@ export function WallOfWishes({ limit, showWave = true }: Readonly<{ limit?: numb
             >
               Wall of Wishes
             </h2>
-            <p className="mt-3 text-sm text-white/88 [font-family:var(--font-libertinus),serif] sm:text-base">
+            <p className="mt-3 text-sm text-white/88 [font-family:var(--font-comic-neue),cursive] sm:text-base">
 These are my people. My tiny internet scrapbook of love, blessings, chaos, emojis, <br/> and emotional essays written because I sneezed once.
               <span className="text-[#e3a83b]">♡</span>
             </p>

@@ -120,7 +120,7 @@ export function Hero() {
         </svg>
       </div>
 
-      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-5 pb-10 pt-8 sm:px-8 md:grid-cols-[0.9fr_1.1fr] md:pb-14 md:mb-14 md:pt-2 lg:px-10">
+      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-5 pb-10 pt-8 sm:px-8 md:grid-cols-[0.9fr_1.1fr] md:pb-14 md:mb-20 md:pt-2 lg:px-10">
         <div className="max-w-xl pt-4 md:pt-12">
           <div className="mb-4 flex items-center gap-4 text-[#a56b26] [font-family:var(--font-caveat),cursive]">
             <span className="h-1 w-8 rotate-12 rounded-full bg-[#e5a40f]" />
@@ -143,9 +143,10 @@ export function Hero() {
           </p>
 
           <p className="mt-7 max-w-md text-lg leading-8 text-[#21170f] [font-family:var(--font-comic-neue),cursive]">
-            I may be tiny, but my dreams are big.
+            I may still fit inside tiny<br/> blankets and sleepy cuddles…
+            <br/> but somewhere inside me lives a little lion
+            I may be tiny
             <br /> This is the beginning of my journey,
-            <br /> and I&apos;m so happy you&apos;re here with me.{" "}
             <span className="text-[#9d6a13]">♥</span>
           </p>
 
@@ -253,10 +254,9 @@ export function Hero() {
           </svg>
         </div>
 
-        <div className="mx-auto grid max-w-5xl gap-6 px-6 text-center text-lg font-bold leading-relaxed text-[#21170f] [font-family:var(--font-libertinus),serif] md:grid-cols-[1fr_auto_1fr] md:items-center relative z-20">
-          <p className="mx-auto max-w-xs md:text-right">
+        <div className="mx-auto grid max-w-5xl gap-6 px-6 text-center text-2xl font-bold leading-relaxed text-[#21170f] [font-family:var(--font-comic-neue),cursive] md:grid-cols-[1fr_auto_1fr] md:items-center relative z-20">
+          <p className="mx-auto max-w-xs text-center">
             Thank you for walking beside me
-            <br />
             while I learn to roar
             <CuteHeart />
           </p>
@@ -270,9 +270,8 @@ export function Hero() {
               className="mx-auto size-48 max-sm:size-44 sm:size-52 md:size-64 rounded-full border-double border-[10px] border-[#e2d5c3] bg-[#fcf9f2] object-contain shadow-[0_15px_35px_rgba(84,54,18,0.22)] hover:scale-105 transition-transform duration-300"
             />
           </div>
-          <p className="mx-auto max-w-xs md:text-left">
+          <p className="mx-auto max-w-xs text-center">
             Thank you for being
-            <br />
             a part of my world.
             <CuteHeart />
           </p>

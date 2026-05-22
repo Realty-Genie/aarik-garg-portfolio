@@ -68,13 +68,13 @@ export default function SendWishPage() {
 
         {/* Left — copy */}
         <div>
-          <p className="text-2xl italic text-[#7b4d2a] [font-family:var(--font-libertinus),serif]">Psst… it&apos;s me, Aarik.</p>
+          <p className="text-2xl italic text-[#7b4d2a] [font-family:var(--font-comic-neue),cursive]">Psst… it&apos;s me, Aarik.</p>
           <h1 className="mt-3 text-5xl font-black uppercase leading-[0.95] text-[#17130f] [font-family:var(--font-caveat),cursive] sm:text-6xl lg:text-7xl">
-            Send me<br />a wish. ✍️
+            Send me<br />a wish.
           </h1>
           <div className="mt-5 h-3 w-48 rounded-full bg-[#edb21c] [clip-path:polygon(0_38%,86%_25%,88%_0,100%_50%,88%_100%,86%_68%,0_72%)]" />
 
-          <p className="mt-8 text-xl leading-9 text-[#302215] [font-family:var(--font-libertinus),serif]">
+          <p className="mt-8 text-xl leading-9 text-[#302215] [font-family:var(--font-comic-neue),cursive]">
             Write something emotional, funny, dramatic, full of emojis, or all of the above.
             <br /><br />
             I&apos;ll read it one day and probably pretend I&apos;m not crying.
@@ -83,9 +83,9 @@ export default function SendWishPage() {
 
           <a
             href="/wishes"
-            className="mt-10 inline-block text-base text-[#7b4d2a] underline underline-offset-4 [font-family:var(--font-libertinus),serif] hover:text-[#c88716]"
+            className="mt-10 inline-block text-base text-[#7b4d2a] underline underline-offset-4 [font-family:var(--font-comic-neue),cursive] hover:text-[#c88716]"
           >
-            ← See what others wrote
+            ← View All Wishes 
           </a>
         </div>
 
