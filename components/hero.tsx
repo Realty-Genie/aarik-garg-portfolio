@@ -2,10 +2,26 @@ import Image from "next/image";
 
 const navItems = ["Home", "My Story", "Milestones", "Gallery"];
 
+function CuteHeart() {
+  return (
+    <span className="inline-block align-middle ml-2">
+      <svg
+        className="h-[18px] w-[18px] drop-shadow-[0_2px_4px_rgba(0,0,0,0.06)]"
+        viewBox="0 0 24 24"
+        fill="#e6a91d"
+        stroke="#21170f"
+        strokeWidth="2.5"
+      >
+        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+      </svg>
+    </span>
+  );
+}
+
 export function Hero() {
   return (
     <section
-      className="relative isolate min-h-screen overflow-hidden bg-[oklch(89%_9%_76deg)] text-[#21170f]"
+      className="relative isolate z-30 min-h-screen bg-[oklch(89%_9%_76deg)] text-[#21170f]"
       aria-labelledby="hero-title"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(255,255,255,0.32),transparent_20rem),radial-gradient(circle_at_92%_12%,rgba(164,105,17,0.14),transparent_17rem),linear-gradient(rgba(89,59,26,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(89,59,26,0.035)_1px,transparent_1px)] bg-[size:auto,auto,44px_44px,44px_44px]" />
@@ -252,7 +268,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative z-10 mt-2 bg-[oklch(92%_7%_74deg)] pb-10 pt-12 md:mt-0 md:pb-14 md:pt-16">
+      <div className="relative z-10 -mt-12 bg-[oklch(92%_7%_74deg)] py-0 md:-mt-20">
         <svg
           className="pointer-events-none absolute inset-x-0 -top-16 h-20 w-full text-[oklch(92%_7%_74deg)] md:-top-24 md:h-28"
           viewBox="0 0 1440 150"
@@ -314,25 +330,27 @@ export function Hero() {
           </svg>
         </div>
 
-        <div className="mx-auto grid max-w-5xl gap-6 px-6 text-center text-lg leading-8 text-[#21170f] [font-family:var(--font-inter),sans-serif] md:grid-cols-[1fr_auto_1fr] md:items-center">
-          <p className="mx-auto max-w-xs">
+        <div className="mx-auto grid max-w-5xl gap-6 px-6 text-center text-lg font-bold leading-relaxed text-[#21170f] [font-family:var(--font-inter),sans-serif] md:grid-cols-[1fr_auto_1fr] md:items-center relative z-20">
+          <p className="mx-auto max-w-xs md:text-right">
             This is just the beginning
             <br />
-            of a beautiful story.{" "}
-            <span className="text-[#9d6a13]">♥</span>
+            of a beautiful story.
+            <CuteHeart />
           </p>
-          <Image
-            src="/lion.png"
-            alt="Little lion mascot"
-            width={1254}
-            height={1254}
-            className="mx-auto size-32 rounded-full object-contain drop-shadow-[0_10px_18px_rgba(84,54,18,0.18)] md:size-40"
-          />
-          <p className="mx-auto max-w-xs">
+          <div className="relative translate-y-12 md:translate-y-20">
+            <Image
+              src="/Lion.png"
+              alt="Little lion mascot"
+              width={1254}
+              height={1254}
+              className="mx-auto size-52 md:size-64 rounded-full border-double border-[10px] border-[#e2d5c3] bg-[#fcf9f2] object-contain shadow-[0_15px_35px_rgba(84,54,18,0.22)] hover:scale-105 transition-transform duration-300"
+            />
+          </div>
+          <p className="mx-auto max-w-xs md:text-left">
             Thank you for being
             <br />
-            a part of my world.{" "}
-            <span className="text-[#9d6a13]">♥</span>
+            a part of my world.
+            <CuteHeart />
           </p>
         </div>
       </div>
