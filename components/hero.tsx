@@ -346,7 +346,7 @@ export function Hero() {
           </p>
           <div className="relative max-sm:translate-y-3 translate-y-12 md:translate-y-20">
             <Image
-              src="/Lion.png"
+              src="/lion.png"
               alt="Little lion mascot"
               width={1254}
               height={1254}
