@@ -101,7 +101,7 @@ export function Footer() {
                 <br />
                 for me <span className="text-[#d08b19]">♡</span>
               </p>
-              <BlobButton href="/#wishes" className="mx-auto h-20 px-6 max-sm:rotate-0 sm:px-8 md:px-12 rotate-[2deg] md:mx-0">
+              <BlobButton href="/wishes" className="mx-auto h-20 px-6 max-sm:rotate-0 sm:px-8 md:px-12 rotate-[2deg] md:mx-0">
                 <span className="inline-flex items-center gap-2">
                   Send your wish <ArrowRight className="h-5 w-5" />
                 </span>
