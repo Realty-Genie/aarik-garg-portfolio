@@ -75,7 +75,7 @@ export function MyStory() {
           <Scribble className="mt-5 h-10 w-72 text-[#d49b22]" />
 
           <div
-            className="relative mt-10 bg-[#fff6e8] px-7 py-8 text-xl font-semibold leading-9 text-[#302215] shadow-[16px_16px_0_rgba(23,19,15,0.16)] [clip-path:polygon(4%_0,100%_4%,96%_96%,74%_100%,28%_97%,0_100%,2%_20%)] [font-family:var(--font-inter),sans-serif] sm:px-9 sm:text-2xl sm:leading-10"
+            className="relative mt-10 bg-[#fff6e8] px-7 py-8 text-xl font-semibold leading-9 text-[#302215] shadow-[16px_16px_0_rgba(23,19,15,0.16)] [clip-path:polygon(4%_0,100%_4%,96%_96%,74%_100%,28%_97%,0_100%,2%_20%)] [font-family:var(--font-libertinus),serif] sm:px-9 sm:text-2xl sm:leading-10"
           >
             <p>
               Once upon a time, a very tiny lion entered the world. That lion

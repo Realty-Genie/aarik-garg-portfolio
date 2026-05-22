@@ -164,7 +164,7 @@ export function Hero() {
               <a
                 href={navLinks[item]}
                 key={item}
-                className="relative inline-flex items-center gap-3 font-medium transition hover:text-[#f3bc25] [font-family:var(--font-inter),sans-serif]"
+                className="relative inline-flex items-center gap-3 font-medium transition hover:text-[#f3bc25] [font-family:var(--font-libertinus),serif]"
               >
                 {item === "Home" ? (
                   <span className="text-xl leading-none text-[#f3bc25]">✭</span>
@@ -226,7 +226,7 @@ export function Hero() {
             <span className="text-[#c88716]">two months old.</span>
           </p>
 
-          <p className="mt-7 max-w-md text-lg leading-8 text-[#21170f] [font-family:var(--font-inter),sans-serif]">
+          <p className="mt-7 max-w-md text-lg leading-8 text-[#21170f] [font-family:var(--font-libertinus),serif]">
             I may be tiny, but my dreams are big.
             <br /> This is the beginning of my journey,
             <br /> and I&apos;m so happy you&apos;re here with me.{" "}
@@ -337,7 +337,7 @@ export function Hero() {
           </svg>
         </div>
 
-        <div className="mx-auto grid max-w-5xl gap-6 px-6 text-center text-lg font-bold leading-relaxed text-[#21170f] [font-family:var(--font-inter),sans-serif] md:grid-cols-[1fr_auto_1fr] md:items-center relative z-20">
+        <div className="mx-auto grid max-w-5xl gap-6 px-6 text-center text-lg font-bold leading-relaxed text-[#21170f] [font-family:var(--font-libertinus),serif] md:grid-cols-[1fr_auto_1fr] md:items-center relative z-20">
           <p className="mx-auto max-w-xs md:text-right">
             This is just the beginning
             <br />

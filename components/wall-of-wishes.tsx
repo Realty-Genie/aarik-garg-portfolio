@@ -299,7 +299,7 @@ export function WallOfWishes() {
             >
               Wall of Wishes
             </h2>
-            <p className="mt-3 text-sm text-white/88 [font-family:var(--font-inter),sans-serif] sm:text-base">
+            <p className="mt-3 text-sm text-white/88 [font-family:var(--font-libertinus),serif] sm:text-base">
               Your wishes, love & blessings mean the world to me.{" "}
               <span className="text-[#e3a83b]">♡</span>
             </p>
@@ -587,7 +587,7 @@ export function WallOfWishes() {
                       <p className="font-bold">
                         – {wish.Name} <span className={style.heart}>♥</span>
                       </p>
-                      <p className="text-sm opacity-75 [font-family:var(--font-inter),sans-serif]">
+                      <p className="text-sm opacity-75 [font-family:var(--font-libertinus),serif]">
                         {formatDate(wish.Time)}
                       </p>
                     </div>

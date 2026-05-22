@@ -137,7 +137,7 @@ export function Footer() {
             </a>
           </div>
 
-          <div className="text-sm leading-7 [font-family:var(--font-inter),sans-serif]">
+          <div className="text-sm leading-7 [font-family:var(--font-libertinus),serif]">
             <p>
               Made with love for AARIK GARG{" "}
               <span className="text-[#9d6a13]">♥</span>
