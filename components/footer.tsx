@@ -12,7 +12,7 @@ function OpenEnvelopeIcon() {
   return (
     <div className="relative">
       <MailOpen
-        className="h-20 w-24 stroke-[1.8] text-[#21170f] md:h-24 md:w-28"
+        className="stroke-[1.8] text-[#21170f] max-sm:h-16 max-sm:w-20 h-20 w-24 md:h-24 md:w-28"
         aria-hidden="true"
       />
       <Heart
@@ -48,7 +48,7 @@ function BlobButton({
       >
         <path
           fill="currentColor"
-          d="M15 57C6 41 10 18 31 10c18-7 43-2 64-4 32-3 53-7 77 2 17 6 24 18 27 30 14 2 19 14 12 25-9 14-33 14-53 13-27-1-48 4-75 5-30 1-52-1-68-24Z"
+          d="M18 44C16 24 30 7 56 4 80 1 102 10 124 8 150 5 174 1 198 11 216 19 226 36 222 54 218 71 204 81 180 83 154 85 128 77 106 80 82 83 56 87 34 79 20 66 18 44Z"
         />
       </svg>
       <span className="relative z-10">{children}</span>
@@ -64,31 +64,31 @@ export function Footer() {
           className="pointer-events-none absolute inset-0 overflow-hidden text-[#d08b19]"
           aria-hidden="true"
         >
-          <span className="absolute left-[4%] top-8 rotate-[-12deg] text-6xl leading-none opacity-80 [font-family:var(--font-caveat),cursive]">
+          <span className="absolute left-[4%] top-8 rotate-[-12deg] leading-none opacity-80 [font-family:var(--font-caveat),cursive] max-sm:text-4xl text-6xl">
             ♡
           </span>
-          <span className="absolute right-[6%] top-5 rotate-12 text-6xl leading-none opacity-80 [font-family:var(--font-caveat),cursive]">
+          <span className="absolute right-[6%] top-5 rotate-12 leading-none opacity-80 [font-family:var(--font-caveat),cursive] max-sm:text-4xl text-6xl">
             ♡♡
           </span>
-          <span className="absolute left-[18%] bottom-4 rotate-[6deg] text-5xl leading-none opacity-55 [font-family:var(--font-caveat),cursive]">
+          <span className="absolute left-[18%] bottom-4 rotate-[6deg] leading-none opacity-55 [font-family:var(--font-caveat),cursive] max-sm:text-3xl text-5xl">
             〰
           </span>
-          <span className="absolute right-[19%] bottom-10 rotate-[-14deg] text-4xl leading-none [font-family:var(--font-caveat),cursive]">
+          <span className="absolute right-[19%] bottom-10 rotate-[-14deg] leading-none [font-family:var(--font-caveat),cursive] max-sm:text-2xl text-4xl">
             ♕
           </span>
         </div>
 
-        <div className="relative z-10 mx-auto max-w-5xl px-5">
-          <div className="relative mx-auto px-5 py-8 md:px-12">
+        <div className="relative z-10 mx-auto max-w-5xl">
+          <div className="relative mx-auto px-8 py-14 md:px-20">
             <svg
               className="absolute inset-0 -z-10 size-full text-[oklch(92%_7%_74deg)] drop-shadow-[0_16px_22px_rgba(0,0,0,0.16)]"
-              viewBox="0 0 980 170"
+              viewBox="0 0 980 200"
               preserveAspectRatio="none"
               aria-hidden="true"
             >
               <path
                 fill="currentColor"
-                d="M23 113C-7 73 16 21 77 17c80-5 125 21 203 8 93-15 151-31 240-6 59 17 91 55 154 38 70-19 153-33 218 5 65 38 47 84-10 95-81 16-141-15-231-2-102 15-165 23-267 3-94-18-152-4-242 3-62 5-94-22-119-48Z"
+                d="M60 100C55 60 78 18 140 10 210 2 290 20 370 14 455 8 525 2 605 10 690 18 768 8 845 16 910 22 962 55 968 100 974 145 944 172 878 180 798 188 718 174 638 180 556 186 472 178 390 184 306 190 222 178 144 172 82 164 64 140 60 100Z"
               />
             </svg>
 
@@ -96,12 +96,12 @@ export function Footer() {
               <div className="mx-auto md:mx-0">
                 <OpenEnvelopeIcon />
               </div>
-              <p className="text-4xl font-bold leading-tight [font-family:var(--font-caveat),cursive] sm:text-5xl">
+              <p className="text-3xl font-bold leading-tight [font-family:var(--font-caveat),cursive] max-sm:text-2xl sm:text-4xl md:text-5xl">
                 Leave your wishes
                 <br />
                 for me <span className="text-[#d08b19]">♡</span>
               </p>
-              <BlobButton href="#wishes" className="mx-auto h-20 px-12 rotate-[2deg] md:mx-0">
+              <BlobButton href="#wishes" className="mx-auto h-20 px-6 max-sm:rotate-0 sm:px-8 md:px-12 rotate-[2deg] md:mx-0">
                 <span className="inline-flex items-center gap-2">
                   Send your wish <ArrowRight className="h-5 w-5" />
                 </span>

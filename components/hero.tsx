@@ -344,13 +344,14 @@ export function Hero() {
             of a beautiful story.
             <CuteHeart />
           </p>
-          <div className="relative translate-y-12 md:translate-y-20">
+          <div className="relative max-sm:translate-y-3 translate-y-12 md:translate-y-20">
             <Image
               src="/Lion.png"
               alt="Little lion mascot"
               width={1254}
               height={1254}
-              className="mx-auto size-52 md:size-64 rounded-full border-double border-[10px] border-[#e2d5c3] bg-[#fcf9f2] object-contain shadow-[0_15px_35px_rgba(84,54,18,0.22)] hover:scale-105 transition-transform duration-300"
+              sizes="(max-width: 640px) 192px, (max-width: 768px) 208px, 256px"
+              className="mx-auto size-48 max-sm:size-44 sm:size-52 md:size-64 rounded-full border-double border-[10px] border-[#e2d5c3] bg-[#fcf9f2] object-contain shadow-[0_15px_35px_rgba(84,54,18,0.22)] hover:scale-105 transition-transform duration-300"
             />
           </div>
           <p className="mx-auto max-w-xs md:text-left">
