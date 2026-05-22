@@ -9,6 +9,102 @@ export function Hero() {
       aria-labelledby="hero-title"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(255,255,255,0.32),transparent_20rem),radial-gradient(circle_at_92%_12%,rgba(164,105,17,0.14),transparent_17rem),linear-gradient(rgba(89,59,26,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(89,59,26,0.035)_1px,transparent_1px)] bg-[size:auto,auto,44px_44px,44px_44px]" />
+      <div
+        className="pointer-events-none absolute inset-0 z-[1] overflow-hidden text-[#d08b19]"
+        aria-hidden="true"
+      >
+        <span className="absolute left-[5%] top-[21%] rotate-[-12deg] text-5xl leading-none [font-family:var(--font-caveat),cursive]">
+          〰
+        </span>
+        <span className="absolute left-[26%] top-[20%] rotate-[15deg] text-4xl leading-none text-[#e2a711] [font-family:var(--font-caveat),cursive]">
+          〰
+        </span>
+        <span className="absolute right-[7%] top-[18%] rotate-12 text-6xl leading-none [font-family:var(--font-caveat),cursive]">
+          ☆
+        </span>
+        <span className="absolute right-[3%] top-[17%] size-6 rounded-full bg-[#a66c14]" />
+        <span className="absolute right-[2%] top-[25%] size-2 rounded-full bg-[#a66c14]" />
+        <span className="absolute left-[39%] top-[42%] rotate-12 text-5xl leading-none [font-family:var(--font-caveat),cursive]">
+          ♡
+        </span>
+        <span className="absolute right-[8%] top-[47%] rotate-[-8deg] text-6xl leading-none text-[#6d4b24] opacity-80 [font-family:var(--font-caveat),cursive]">
+          〰〰
+        </span>
+        <span className="absolute right-[14%] top-[55%] rotate-[-16deg] text-5xl leading-none [font-family:var(--font-caveat),cursive]">
+          ☆
+        </span>
+
+        <svg
+          className="absolute left-[4%] top-[35%] h-16 w-16 text-[#251b13]"
+          viewBox="0 0 60 60"
+        >
+          <path
+            d="M8 30h18M34 30h18M30 8v18M30 34v18"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeWidth="3"
+          />
+          <path
+            d="M14 14l8 8M38 38l8 8M46 14l-8 8M22 38l-8 8"
+            fill="none"
+            stroke="#e6a91d"
+            strokeLinecap="round"
+            strokeWidth="3"
+          />
+        </svg>
+
+        <svg
+          className="absolute left-[42%] top-[54%] h-20 w-20 text-[#d39a28]"
+          viewBox="0 0 80 80"
+        >
+          {Array.from({ length: 18 }).map((_, index) => (
+            <circle
+              key={index}
+              cx={12 + (index % 6) * 10}
+              cy={16 + Math.floor(index / 6) * 12}
+              r={index % 3 === 0 ? 1.8 : 1.2}
+              fill="currentColor"
+              opacity="0.7"
+            />
+          ))}
+        </svg>
+
+        <svg
+          className="absolute bottom-[13%] left-[2%] h-24 w-20 text-[#21170f]"
+          viewBox="0 0 80 96"
+        >
+          {Array.from({ length: 20 }).map((_, index) => (
+            <circle
+              key={index}
+              cx={8 + (index % 5) * 14}
+              cy={12 + Math.floor(index / 5) * 16}
+              r="2"
+              fill="currentColor"
+            />
+          ))}
+        </svg>
+
+        <svg
+          className="absolute right-[6%] bottom-[8%] h-24 w-28 text-[#dc9b20]"
+          viewBox="0 0 112 96"
+        >
+          <path
+            d="M18 52c18-26 28-2 34-24 8 28 24 2 42 24M26 70c18-14 42-10 62 0"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeWidth="3"
+          />
+          <path
+            d="M84 17l2 15 15-2-13 8 8 13-12-9-11 10 5-14-13-7 15 1z"
+            fill="none"
+            stroke="currentColor"
+            strokeLinejoin="round"
+            strokeWidth="3"
+          />
+        </svg>
+      </div>
 
       <header className="relative z-20">
         <div className="absolute inset-x-0 top-0 h-28 bg-[oklch(24%_3%_88deg)] shadow-[0_12px_28px_rgba(35,25,18,0.18)] md:h-32" />
@@ -156,17 +252,88 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative z-10 -mt-8 bg-[oklch(92%_7%_74deg)] py-10 [clip-path:ellipse(76%_66%_at_50%_100%)] md:-mt-14 md:py-14">
-        <div className="mx-auto grid max-w-5xl gap-5 px-6 text-center text-lg leading-8 text-[#21170f] [font-family:var(--font-inter),sans-serif] md:grid-cols-[1fr_auto_1fr] md:items-center">
-          <p>This is just the beginning of a beautiful story. ♥</p>
+      <div className="relative z-10 mt-2 bg-[oklch(92%_7%_74deg)] pb-10 pt-12 md:mt-0 md:pb-14 md:pt-16">
+        <svg
+          className="pointer-events-none absolute inset-x-0 -top-16 h-20 w-full text-[oklch(92%_7%_74deg)] md:-top-24 md:h-28"
+          viewBox="0 0 1440 150"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            fill="currentColor"
+            d="M0 86C58 100 94 132 157 113C226 92 248 62 319 80C389 98 411 126 488 112C560 99 588 55 665 67C748 80 777 121 860 108C939 95 966 55 1047 69C1133 84 1168 127 1249 112C1323 98 1364 64 1440 78V150H0Z"
+          />
+        </svg>
+        <div
+          className="pointer-events-none absolute inset-0 overflow-hidden"
+          aria-hidden="true"
+        >
+          <span className="absolute left-[31%] top-8 rotate-[-12deg] text-4xl leading-none text-[#d08b19] [font-family:var(--font-caveat),cursive]">
+            ♡
+          </span>
+          <span className="absolute right-[15%] top-14 rotate-12 text-4xl leading-none text-[#e0a421] [font-family:var(--font-caveat),cursive]">
+            ☆
+          </span>
+          <span className="absolute right-[8%] bottom-7 rotate-[-18deg] text-5xl leading-none text-[#e0a421] [font-family:var(--font-caveat),cursive]">
+            ☆
+          </span>
+
+          <svg
+            className="absolute left-[4%] bottom-3 h-20 w-16 text-[#21170f]"
+            viewBox="0 0 70 86"
+          >
+            {Array.from({ length: 16 }).map((_, index) => (
+              <circle
+                key={index}
+                cx={8 + (index % 4) * 14}
+                cy={10 + Math.floor(index / 4) * 15}
+                r={index % 3 === 0 ? 2.2 : 1.7}
+                fill="currentColor"
+              />
+            ))}
+          </svg>
+
+          <svg
+            className="absolute right-[5%] top-8 h-20 w-24 text-[#d08b19]"
+            viewBox="0 0 96 80"
+          >
+            <path
+              d="M12 54c15-22 22-2 29-20 7 22 21 3 35 20M22 68c14-10 34-8 50 0"
+              fill="none"
+              stroke="currentColor"
+              strokeLinecap="round"
+              strokeWidth="3"
+            />
+            <path
+              d="M70 8l2 12 12-1-10 6 6 11-10-7-9 8 4-12-10-6 12 1z"
+              fill="none"
+              stroke="currentColor"
+              strokeLinejoin="round"
+              strokeWidth="3"
+            />
+          </svg>
+        </div>
+
+        <div className="mx-auto grid max-w-5xl gap-6 px-6 text-center text-lg leading-8 text-[#21170f] [font-family:var(--font-inter),sans-serif] md:grid-cols-[1fr_auto_1fr] md:items-center">
+          <p className="mx-auto max-w-xs">
+            This is just the beginning
+            <br />
+            of a beautiful story.{" "}
+            <span className="text-[#9d6a13]">♥</span>
+          </p>
           <Image
             src="/lion.png"
             alt="Little lion mascot"
             width={1254}
             height={1254}
-            className="mx-auto hidden size-28 rounded-full object-contain md:block"
+            className="mx-auto size-32 rounded-full object-contain drop-shadow-[0_10px_18px_rgba(84,54,18,0.18)] md:size-40"
           />
-          <p>Thank you for being a part of my world. ♥</p>
+          <p className="mx-auto max-w-xs">
+            Thank you for being
+            <br />
+            a part of my world.{" "}
+            <span className="text-[#9d6a13]">♥</span>
+          </p>
         </div>
       </div>
     </section>
