@@ -99,7 +99,7 @@ export function Footer() {
               <p className="text-2xl font-bold leading-tight [font-family:var(--font-caveat),cursive] sm:text-3xl md:text-4xl">
                 Leave your wishes for me <span className="text-[#d08b19]">♡</span>
               </p>
-              <BlobButton href="/wishes" className="mx-auto h-14 px-5 max-sm:rotate-0 sm:px-7 rotate-[2deg] md:mx-0">
+              <BlobButton href="/send-wish" className="mx-auto h-14 px-5 max-sm:rotate-0 sm:px-7 rotate-[2deg] md:mx-0">
                 <span className="inline-flex items-center gap-2">
                   Send your wish <ArrowRight className="h-4 w-4" />
                 </span>
