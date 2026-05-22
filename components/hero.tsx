@@ -144,8 +144,7 @@ export function Hero() {
 
           <p className="mt-7 max-w-md text-lg leading-8 text-[#21170f] [font-family:var(--font-comic-neue),cursive]">
             I may still fit inside tiny<br/> blankets and sleepy cuddles…
-            <br/> but somewhere inside me lives a little lion
-            I may be tiny
+            <br/> but somewhere inside me lives a little lion!!
             <br /> This is the beginning of my journey,
             <span className="text-[#9d6a13]">♥</span>
           </p>

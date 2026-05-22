@@ -1,3 +1,7 @@
+"use client";
+
+import { useState } from "react";
+
 const navItems = ["Home", "My Story", "Wishes", "Send a Wish"];
 
 const navLinks: Record<string, string> = {
@@ -8,6 +12,8 @@ const navLinks: Record<string, string> = {
 };
 
 export function Navbar() {
+  const [open, setOpen] = useState(false);
+
   return (
     <header className="relative z-50 bg-[oklch(24%_3%_88deg)] pb-6">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-4 sm:px-8 lg:px-10">
@@ -23,6 +29,7 @@ export function Navbar() {
           </span>
         </a>
 
+        {/* Desktop nav */}
         <div className="hidden items-center gap-9 text-base text-white/90 md:flex">
           {navItems.map((item) => (
             <a
@@ -38,6 +45,7 @@ export function Navbar() {
           ))}
         </div>
 
+        {/* Desktop wishes button */}
         <div className="hidden md:block">
           <a
             href="/#wishes"
@@ -59,7 +67,39 @@ export function Navbar() {
             </span>
           </a>
         </div>
+
+        {/* Hamburger button */}
+        <button
+          className="flex md:hidden flex-col justify-center items-center gap-1.5 p-2 text-white"
+          onClick={() => setOpen((o) => !o)}
+          aria-label="Toggle menu"
+          aria-expanded={open}
+        >
+          <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${open ? "translate-y-2 rotate-45" : ""}`} />
+          <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${open ? "opacity-0" : ""}`} />
+          <span className={`block h-0.5 w-6 bg-white transition-all duration-300 ${open ? "-translate-y-2 -rotate-45" : ""}`} />
+        </button>
       </nav>
+
+      {/* Mobile menu */}
+      {open && (
+        <div className="md:hidden border-t border-white/10 px-5 pb-4 pt-3 sm:px-8">
+          <div className="flex flex-col gap-4">
+            {navItems.map((item) => (
+              <a
+                href={navLinks[item]}
+                key={item}
+                onClick={() => setOpen(false)}
+                className="text-xl font-bold text-white/90 transition hover:text-[#f3bc25] [font-family:var(--font-comic-neue),cursive]"
+              >
+                {item === "Home" ? <span className="mr-2 text-[#f3bc25]">✭</span> : null}
+                {item}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
+
       <svg
         className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full h-10 w-full text-[oklch(24%_3%_88deg)]"
         viewBox="0 0 1440 60"
