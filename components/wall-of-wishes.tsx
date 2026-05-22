@@ -97,7 +97,7 @@ function BlobButton({
   );
 }
 
-export function WallOfWishes({ limit }: Readonly<{ limit?: number }> = {}) {
+export function WallOfWishes({ limit, showForm = false, showWave = true }: Readonly<{ limit?: number; showForm?: boolean; showWave?: boolean }> = {}) {
   const [wishes, setWishes] = useState<WishType[]>([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -229,20 +229,22 @@ export function WallOfWishes({ limit }: Readonly<{ limit?: number }> = {}) {
   return (
     <section
       id="wishes"
-      className="relative isolate z-10 overflow-hidden bg-[oklch(24%_3%_88deg)] pb-16 pt-36 text-white md:pb-20 md:pt-48"
+      className={`relative isolate z-10 overflow-hidden bg-[oklch(24%_3%_88deg)] pb-16 text-white md:pb-20 ${showWave ? "pt-36 md:pt-48" : "pt-10 md:pt-14"}`}
       aria-labelledby="wall-title"
     >
-      <svg
-        className="pointer-events-none absolute inset-x-0 -top-px h-24 w-full text-[oklch(92%_7%_74deg)]"
-        viewBox="0 0 1440 150"
-        preserveAspectRatio="none"
-        aria-hidden="true"
-      >
-        <path
-          fill="currentColor"
-          d="M0 0H1440V63C1365 35 1324 76 1247 83C1167 91 1135 45 1051 55C970 65 942 107 860 96C777 85 747 45 667 58C589 71 560 112 488 99C411 85 386 56 318 72C247 89 225 119 157 99C93 80 58 48 0 60Z"
-        />
-      </svg>
+      {showWave && (
+        <svg
+          className="pointer-events-none absolute inset-x-0 -top-px h-24 w-full text-[oklch(92%_7%_74deg)]"
+          viewBox="0 0 1440 150"
+          preserveAspectRatio="none"
+          aria-hidden="true"
+        >
+          <path
+            fill="currentColor"
+            d="M0 0H1440V63C1365 35 1324 76 1247 83C1167 91 1135 45 1051 55C970 65 942 107 860 96C777 85 747 45 667 58C589 71 560 112 488 99C411 85 386 56 318 72C247 89 225 119 157 99C93 80 58 48 0 60Z"
+          />
+        </svg>
+      )}
 
       <div
         className="pointer-events-none absolute inset-0 overflow-hidden text-[#d08b19]"
@@ -302,7 +304,7 @@ export function WallOfWishes({ limit }: Readonly<{ limit?: number }> = {}) {
               Wall of Wishes
             </h2>
             <p className="mt-3 text-sm text-white/88 [font-family:var(--font-libertinus),serif] sm:text-base">
-              Your wishes, love & blessings mean the world to me.{" "}
+These are my people. My tiny internet scrapbook of love, blessings, chaos, emojis, <br/> and emotional essays written because I sneezed once.
               <span className="text-[#e3a83b]">♡</span>
             </p>
           </div>
@@ -316,7 +318,7 @@ export function WallOfWishes({ limit }: Readonly<{ limit?: number }> = {}) {
         <div className="flex flex-wrap gap-10 justify-center items-start w-full max-w-7xl mx-auto">
 
           {/* Interactive Wish Form Card */}
-          <div
+          {showForm && <div
             ref={formRef}
             className={`relative w-[300px] min-h-[410px] p-7 text-[#21170f] shadow-[0_18px_28px_-14px_rgba(0,0,0,0.65),0_7px_12px_-8px_rgba(0,0,0,0.45)] rounded-[4px] ${selectedCardColor.class} border border-[#21170f]/10 rotate-[1deg] [font-family:var(--font-caveat),cursive] transition-all duration-300 hover:rotate-0 hover:scale-[1.03] hover:shadow-[0_24px_34px_-16px_rgba(0,0,0,0.68),0_10px_16px_-10px_rgba(0,0,0,0.42)] flex flex-col justify-between`}
           >
@@ -416,7 +418,7 @@ export function WallOfWishes({ limit }: Readonly<{ limit?: number }> = {}) {
                 </button>
               </form>
             )}
-          </div>
+          </div>}
 
           {/* Wishes List */}
           {loading ? (

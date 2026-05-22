@@ -4,7 +4,7 @@ import { Footer } from "@/components/footer";
 export default function WishesPage() {
   return (
     <>
-      <WallOfWishes />
+      <WallOfWishes showForm showWave={false} />
       <Footer />
     </>
   );
