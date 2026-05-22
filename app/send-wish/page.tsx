@@ -63,7 +63,7 @@ export default function SendWishPage() {
   }
 
   return (
-    <main className="relative min-h-screen bg-[oklch(89%_9%_76deg)] px-5 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
+    <main className="relative min-h-screen bg-[oklch(89%_9%_76deg)] px-5 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28 [background-image:radial-gradient(rgba(35,27,20,0.07)_1px,transparent_1px),linear-gradient(rgba(89,59,26,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(89,59,26,0.03)_1px,transparent_1px)] [background-size:20px_20px,48px_48px,48px_48px]">
 
       {/* Doodles */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden text-[#d08b19]" aria-hidden="true">
