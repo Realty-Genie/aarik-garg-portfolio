@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <WallOfWishes limit={4} />
+      <WallOfWishes limit={6} />
       <Footer />
     </>
   );

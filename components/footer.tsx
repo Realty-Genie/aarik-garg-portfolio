@@ -79,9 +79,9 @@ export function Footer() {
         </div>
 
         <div className="relative z-10 mx-auto max-w-5xl">
-          <div className="relative mx-auto px-8 py-14 md:px-20">
+          <div className="relative mx-auto px-8 py-12 md:px-20 md:py-14">
             <svg
-              className="absolute inset-0 -z-10 size-full text-[oklch(92%_7%_74deg)] drop-shadow-[0_16px_22px_rgba(0,0,0,0.16)]"
+              className="absolute inset-0 -z-10 size-full text-[oklch(92%_7%_74deg)] drop-shadow-[0_10px_16px_rgba(0,0,0,0.14)]"
               viewBox="0 0 980 200"
               preserveAspectRatio="none"
               aria-hidden="true"
@@ -92,18 +92,16 @@ export function Footer() {
               />
             </svg>
 
-            <div className="grid items-center gap-6 text-center md:grid-cols-[auto_1fr_auto] md:text-left">
+            <div className="grid items-center gap-4 text-center md:grid-cols-[auto_1fr_auto] md:text-left">
               <div className="mx-auto md:mx-0">
-                <OpenEnvelopeIcon />
+                <MailOpen className="stroke-[1.8] text-[#21170f] h-12 w-14 md:h-14 md:w-16" aria-hidden="true" />
               </div>
-              <p className="text-3xl font-bold leading-tight [font-family:var(--font-caveat),cursive] max-sm:text-2xl sm:text-4xl md:text-5xl">
-                Leave your wishes
-                <br />
-                for me <span className="text-[#d08b19]">♡</span>
+              <p className="text-2xl font-bold leading-tight [font-family:var(--font-caveat),cursive] sm:text-3xl md:text-4xl">
+                Leave your wishes for me <span className="text-[#d08b19]">♡</span>
               </p>
-              <BlobButton href="/wishes" className="mx-auto h-20 px-6 max-sm:rotate-0 sm:px-8 md:px-12 rotate-[2deg] md:mx-0">
+              <BlobButton href="/wishes" className="mx-auto h-14 px-5 max-sm:rotate-0 sm:px-7 rotate-[2deg] md:mx-0">
                 <span className="inline-flex items-center gap-2">
-                  Send your wish <ArrowRight className="h-5 w-5" />
+                  Send your wish <ArrowRight className="h-4 w-4" />
                 </span>
               </BlobButton>
             </div>

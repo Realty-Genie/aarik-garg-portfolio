@@ -9,7 +9,7 @@ const navLinks: Record<string, string> = {
 
 export function Navbar() {
   return (
-    <header className="relative z-50 bg-[oklch(24%_3%_88deg)] shadow-[0_4px_20px_rgba(35,25,18,0.22)]">
+    <header className="relative z-50 bg-[oklch(24%_3%_88deg)] pb-6">
       <nav className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-5 py-4 sm:px-8 lg:px-10">
         <a href="/" className="leading-none" aria-label="Aarik Garg home">
           <span className="block -rotate-6 text-xl text-[#f1b71c] [font-family:var(--font-caveat),cursive] sm:text-2xl">
@@ -60,6 +60,17 @@ export function Navbar() {
           </a>
         </div>
       </nav>
+      <svg
+        className="pointer-events-none absolute inset-x-0 bottom-0 translate-y-full h-10 w-full text-[oklch(24%_3%_88deg)]"
+        viewBox="0 0 1440 60"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          fill="currentColor"
+          d="M0,0H1440V22C1368,42,1284,14,1200,20C1116,26,1062,46,952,34C842,22,818,8,730,22C642,36,596,48,500,34C404,20,334,12,244,22C154,32,74,54,0,28Z"
+        />
+      </svg>
     </header>
   );
 }
