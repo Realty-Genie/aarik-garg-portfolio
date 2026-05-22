@@ -38,7 +38,8 @@ export async function GET() {
           { status: 403 }
         );
       }
-      throw new Error("Response is not JSON");
+      console.error("Google Apps Script returned non-JSON response:", text.slice(0, 500));
+      throw new Error(`Response is not JSON. Script Output: ${text.slice(0, 150)}`);
     }
 
     const data = await response.json();
@@ -94,7 +95,9 @@ export async function POST(req: Request) {
         body: JSON.stringify({
           action: "addWish",
           name: body.name,
-          wish: body.wish
+          wish: body.wish,
+          cardColor: body.cardColor || "",
+          textColor: body.textColor || ""
         })
       }
     );
@@ -111,7 +114,8 @@ export async function POST(req: Request) {
           { status: 403 }
         );
       }
-      throw new Error("Response is not JSON");
+      console.error("Google Apps Script returned non-JSON response:", text.slice(0, 500));
+      throw new Error(`Response is not JSON. Script Output: ${text.slice(0, 150)}`);
     }
 
     const data = await response.json();

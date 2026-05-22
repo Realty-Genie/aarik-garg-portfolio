@@ -7,8 +7,28 @@ type WishType = {
   Name: string;
   Wish: string;
   Time: string;
+  CardColor?: string;
+  TextColor?: string;
 };
 
+const CARD_COLORS = [
+  { name: "Vanilla Gold", class: "bg-[#f3e3c5]", hex: "#f3e3c5" },
+  { name: "Lavender", class: "bg-[#d8c8e4]", hex: "#d8c8e4" },
+  { name: "Cream Paper", class: "bg-[#f8f3e8]", hex: "#f8f3e8" },
+  { name: "Sunflower Yellow", class: "bg-[#f4d55b]", hex: "#f4d55b" },
+  { name: "Rose Pink", class: "bg-[#f5c6c6]", hex: "#f5c6c6" },
+  { name: "Sky Blue", class: "bg-[#c5e3f3]", hex: "#c5e3f3" },
+  { name: "Mint Green", class: "bg-[#c5f3d8]", hex: "#c5f3d8" }
+];
+
+const TEXT_COLORS = [
+  { name: "Charcoal Black", class: "text-[#21170f]", hex: "#21170f" },
+  { name: "Crimson Red", class: "text-[#c22d2d]", hex: "#c22d2d" },
+  { name: "Royal Blue", class: "text-[#1056a0]", hex: "#1056a0" },
+  { name: "Forest Green", class: "text-[#1d7044]", hex: "#1d7044" },
+  { name: "Deep Violet", class: "text-[#5e2b97]", hex: "#5e2b97" },
+  { name: "Chocolate Brown", class: "text-[#543612]", hex: "#543612" }
+];
 
 const CARD_STYLES = [
   {
@@ -94,6 +114,9 @@ export function WallOfWishes() {
 
   const [name, setName] = useState("");
   const [wishText, setWishText] = useState("");
+  
+  const [selectedCardColor, setSelectedCardColor] = useState(CARD_COLORS[0]);
+  const [selectedTextColor, setSelectedTextColor] = useState(TEXT_COLORS[0]);
 
   const formRef = useRef<HTMLDivElement>(null);
   const nameInputRef = useRef<HTMLInputElement>(null);
@@ -118,6 +141,8 @@ export function WallOfWishes() {
           Name: item.Name ?? item.name ?? item.NAME ?? "Anonymous",
           Wish: item.Wish ?? item.wish ?? item.WISH ?? "",
           Time: item.Time ?? item.time ?? item.TIME ?? new Date().toISOString(),
+          CardColor: item.cardColor ?? item.cardcolor ?? item.CARDCOLOR ?? "",
+          TextColor: item.textColor ?? item.textcolor ?? item.TEXTCOLOR ?? "",
         }));
 
         setWishes(normalized);
@@ -145,12 +170,16 @@ export function WallOfWishes() {
         body: JSON.stringify({
           name: name.trim(),
           wish: wishText.trim(),
+          cardColor: selectedCardColor.class,
+          textColor: selectedTextColor.class,
         }),
       });
 
       if (res.ok) {
         setName("");
         setWishText("");
+        setSelectedCardColor(CARD_COLORS[0]);
+        setSelectedTextColor(TEXT_COLORS[0]);
         setSuccess(true);
         // Refresh list
         await fetchWishes();
@@ -208,7 +237,7 @@ export function WallOfWishes() {
   return (
     <section
       id="wishes"
-      className="relative isolate overflow-hidden bg-[oklch(24%_3%_88deg)] pb-16 pt-24 text-white md:pb-20 md:pt-28"
+      className="relative isolate z-10 overflow-hidden bg-[oklch(24%_3%_88deg)] pb-16 pt-36 text-white md:pb-20 md:pt-48"
       aria-labelledby="wall-title"
     >
       <svg
@@ -292,15 +321,15 @@ export function WallOfWishes() {
           </div>
         </div>
 
-        <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-4">
+        <div className="flex flex-wrap gap-8 justify-center items-stretch w-full max-w-7xl mx-auto">
           
           {/* Interactive Wish Form Card */}
           <div
             ref={formRef}
-            className="relative min-h-[320px] p-7 text-[#21170f] shadow-[0_18px_24px_rgba(0,0,0,0.22)] bg-[#faf6ee] border-2 border-dashed border-[#e3a83b]/60 rotate-[1deg] [font-family:var(--font-caveat),cursive] [clip-path:polygon(3%_3%,94%_1%,98%_15%,96%_95%,15%_97%,2%_93%)] transition-all duration-300 hover:rotate-0 hover:scale-[1.02]"
+            className={`relative w-[300px] min-h-[410px] p-7 text-[#21170f] shadow-[0_12px_28px_-6px_rgba(0,0,0,0.35),0_4px_12px_-2px_rgba(0,0,0,0.22)] rounded-2xl ${selectedCardColor.class} border border-[#21170f]/10 rotate-[1deg] [font-family:var(--font-caveat),cursive] transition-all duration-300 hover:rotate-0 hover:scale-[1.03] hover:shadow-[0_20px_35px_-8px_rgba(0,0,0,0.45)] flex flex-col justify-between`}
           >
-            <span className="absolute left-[35%] -top-4 rotate-[-3deg] h-8 w-24 bg-[#e3a83b]/40 shadow-sm" />
-            <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(68,91,112,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(68,91,112,0.04)_1px,transparent_1px)] bg-[size:16px_16px]" />
+            <span className="absolute left-1/2 -translate-x-1/2 -top-3.5 h-6 w-24 bg-white/35 backdrop-blur-[1px] border border-white/20 shadow-[0_2px_4px_rgba(0,0,0,0.05)] rotate-[-1.5deg] rounded-sm pointer-events-none z-10" />
+            <span className="pointer-events-none absolute inset-0 rounded-2xl bg-[linear-gradient(rgba(227,168,59,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(227,168,59,0.06)_1px,transparent_1px)] bg-[size:16px_16px]" />
 
             {success ? (
               <div className="flex flex-col items-center justify-center h-full text-center py-6">
@@ -311,13 +340,13 @@ export function WallOfWishes() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col h-full justify-between gap-3">
+              <form onSubmit={handleSubmit} className="flex flex-col h-full justify-between gap-4 relative z-10">
                 <div>
-                  <h3 className="text-2xl font-black text-[#e3a83b] mb-4 text-center uppercase tracking-wider">
+                  <h3 className="text-2xl font-black text-[#e3a83b] mb-3 text-center uppercase tracking-wider">
                     Pin a Wish ✍️
                   </h3>
                   
-                  <div className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-3">
                     <input
                       ref={nameInputRef}
                       type="text"
@@ -326,7 +355,7 @@ export function WallOfWishes() {
                       onChange={(e) => setName(e.target.value)}
                       disabled={submitting}
                       required
-                      className="w-full bg-transparent border-b border-[#21170f]/20 focus:border-[#e3a83b] focus:border-b-2 outline-none text-2xl py-1 px-1 placeholder-[#21170f]/40 [font-family:var(--font-caveat),cursive] transition-all"
+                      className={`w-full bg-white/20 focus:bg-white/35 backdrop-blur-[1px] border border-[#21170f]/15 focus:border-[#e3a83b] focus:ring-1 focus:ring-[#e3a83b] outline-none text-2.5xl py-1 px-3.5 rounded-xl placeholder-[#21170f]/40 [font-family:var(--font-caveat),cursive] transition-all duration-200 ${selectedTextColor.class}`}
                     />
                     
                     <textarea
@@ -336,15 +365,56 @@ export function WallOfWishes() {
                       disabled={submitting}
                       required
                       maxLength={250}
-                      className="w-full h-28 bg-transparent focus:border-[#e3a83b] border-b border-[#21170f]/10 focus:border-b-2 outline-none text-2xl py-1 px-1 resize-none placeholder-[#21170f]/40 [font-family:var(--font-caveat),cursive] transition-all"
+                      className={`w-full h-24 bg-white/20 focus:bg-white/35 backdrop-blur-[1px] border border-[#21170f]/15 focus:border-[#e3a83b] focus:ring-1 focus:ring-[#e3a83b] outline-none text-2.5xl py-2 px-3.5 rounded-xl resize-none placeholder-[#21170f]/40 [font-family:var(--font-caveat),cursive] transition-all duration-200 ${selectedTextColor.class}`}
                     />
+                  </div>
+
+                  {/* Selectors Panel */}
+                  <div className="mt-3.5 bg-white/20 border border-[#21170f]/5 p-3 rounded-xl flex flex-col gap-3">
+                    {/* Card Color Selector */}
+                    <div>
+                      <p className="text-base font-black mb-1.5 text-[#21170f]/60 leading-none">Card Color:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {CARD_COLORS.map((c) => (
+                          <button
+                            key={c.name}
+                            type="button"
+                            onClick={() => setSelectedCardColor(c)}
+                            title={c.name}
+                            style={{ backgroundColor: c.hex }}
+                            className={`size-6 rounded-full border border-[#21170f]/20 shadow-sm transition-all duration-200 cursor-pointer ${
+                              selectedCardColor.name === c.name ? "scale-125 border-[#21170f] ring-2 ring-[#e3a83b]" : "hover:scale-110"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Text Color Selector */}
+                    <div>
+                      <p className="text-base font-black mb-1.5 text-[#21170f]/60 leading-none">Text Color:</p>
+                      <div className="flex flex-wrap gap-2">
+                        {TEXT_COLORS.map((tc) => (
+                          <button
+                            key={tc.name}
+                            type="button"
+                            onClick={() => setSelectedTextColor(tc)}
+                            title={tc.name}
+                            style={{ backgroundColor: tc.hex }}
+                            className={`size-6 rounded-full border border-[#21170f]/20 shadow-sm transition-all duration-200 cursor-pointer ${
+                              selectedTextColor.name === tc.name ? "scale-125 border-[#21170f] ring-2 ring-[#e3a83b]" : "hover:scale-110"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
 
                 <button
                   type="submit"
                   disabled={submitting || !name.trim() || !wishText.trim()}
-                  className="w-full py-2 flex items-center justify-center bg-[#e3a83b] hover:bg-[#c9922f] disabled:bg-gray-300 disabled:opacity-50 text-white font-black text-2xl uppercase rounded shadow transition cursor-pointer [font-family:var(--font-caveat),cursive] hover:scale-[1.02] active:scale-95 border-none"
+                  className="w-full py-2 flex items-center justify-center bg-[#e3a83b] hover:bg-[#c9922f] disabled:bg-gray-300 disabled:opacity-50 text-white font-black text-2xl uppercase rounded-xl shadow transition cursor-pointer [font-family:var(--font-caveat),cursive] hover:scale-[1.02] active:scale-95 border-none"
                 >
                   {submitting ? "Pinning..." : "Pin Wish! 💝"}
                 </button>
@@ -358,7 +428,7 @@ export function WallOfWishes() {
             Array.from({ length: 3 }).map((_, idx) => (
               <div
                 key={`loading-${idx}`}
-                className="relative min-h-64 p-7 bg-[#faf6ee]/10 border border-white/10 rounded animate-pulse [clip-path:polygon(3%_3%,92%_0,97%_12%,96%_94%,12%_98%,4%_91%)] flex flex-col justify-between"
+                className="relative w-[300px] min-h-[320px] p-7 bg-[#faf6ee]/10 border border-white/10 rounded-2xl animate-pulse flex flex-col justify-between"
               >
                 <div className="h-4 bg-white/20 rounded w-3/4 mb-3" />
                 <div className="h-4 bg-white/20 rounded w-5/6 mb-3" />
@@ -372,21 +442,30 @@ export function WallOfWishes() {
           ) : (
             sortedWishes.map((wish, i) => {
               const style = CARD_STYLES[i % CARD_STYLES.length];
+              const cardColor = wish.CardColor || style.color;
+              const textColor = wish.TextColor || "text-[#21170f]";
+              const rotations = ["rotate-[-2deg]", "rotate-[1deg]", "rotate-[-1deg]", "rotate-[2deg]"];
+              const rotateClass = rotations[i % rotations.length];
+              
               return (
                 <article
                   key={wish.Id || `${wish.Name}-${i}`}
-                  className={`relative min-h-64 p-7 text-[#21170f] shadow-[0_18px_24px_rgba(0,0,0,0.22)] ${style.color} ${style.rotate} [font-family:var(--font-caveat),cursive] [clip-path:polygon(3%_3%,92%_0,97%_12%,96%_94%,12%_98%,4%_91%)] transition-all duration-300 hover:rotate-0 hover:scale-[1.02]`}
+                  className={`relative w-[300px] min-h-[320px] p-7 ${textColor} shadow-[0_12px_28px_-6px_rgba(0,0,0,0.3),0_4px_12px_-2px_rgba(0,0,0,0.2)] ${cardColor} border border-[#21170f]/10 ${rotateClass} rounded-2xl [font-family:var(--font-caveat),cursive] transition-all duration-300 hover:rotate-0 hover:scale-[1.03] hover:shadow-[0_20px_35px_-8px_rgba(0,0,0,0.4)] flex flex-col justify-between`}
                 >
-                  <span
-                    className={`absolute ${style.tape} h-8 w-20 bg-[#c6ad78]/70 shadow-sm`}
-                  />
-                  {style.grid ? (
-                    <span className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(68,91,112,0.08)_1px,transparent_1px),linear-gradient(90deg,rgba(68,91,112,0.08)_1px,transparent_1px)] bg-[size:18px_18px]" />
-                  ) : null}
-                  <p className="relative text-2xl leading-9 break-words whitespace-pre-wrap">{wish.Wish}</p>
-                  <div className="relative mt-6 text-lg">
-                    <p>– {wish.Name} <span className={style.heart}>♥</span></p>
-                    <p className="mt-1 text-sm [font-family:var(--font-inter),sans-serif]">
+                  <span className="absolute left-1/2 -translate-x-1/2 -top-3.5 h-6 w-24 bg-white/35 backdrop-blur-[1px] border border-white/20 shadow-[0_2px_4px_rgba(0,0,0,0.05)] rotate-[-2deg] rounded-sm pointer-events-none z-10" />
+                  <span className="pointer-events-none absolute inset-0 rounded-2xl bg-[linear-gradient(rgba(33,23,15,0.06)_1px,transparent_1px)] bg-[size:100%_28px]" />
+                  
+                  {/* Decorative soft watermark */}
+                  <div className="absolute right-5 bottom-5 w-16 h-16 pointer-events-none opacity-[0.06] text-[#21170f] z-0">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 14h14v2H5v-2z" />
+                    </svg>
+                  </div>
+
+                  <p className="relative text-[22px] leading-[28px] break-words whitespace-pre-wrap z-10">{wish.Wish}</p>
+                  <div className="relative mt-6 text-lg z-10 flex flex-col gap-0.5">
+                    <p className="font-bold">– {wish.Name} <span className={style.heart}>♥</span></p>
+                    <p className="text-sm opacity-80 [font-family:var(--font-inter),sans-serif]">
                       {formatDate(wish.Time)}
                     </p>
                   </div>
