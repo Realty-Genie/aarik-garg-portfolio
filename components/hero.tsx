@@ -339,9 +339,9 @@ export function Hero() {
 
         <div className="mx-auto grid max-w-5xl gap-6 px-6 text-center text-lg font-bold leading-relaxed text-[#21170f] [font-family:var(--font-libertinus),serif] md:grid-cols-[1fr_auto_1fr] md:items-center relative z-20">
           <p className="mx-auto max-w-xs md:text-right">
-            This is just the beginning
+            Thank you for walking beside me
             <br />
-            of a beautiful story.
+            while I learn to roar
             <CuteHeart />
           </p>
           <div className="relative">
