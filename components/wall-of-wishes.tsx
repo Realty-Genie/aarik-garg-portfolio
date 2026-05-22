@@ -97,7 +97,7 @@ function BlobButton({
   );
 }
 
-export function WallOfWishes() {
+export function WallOfWishes({ limit }: Readonly<{ limit?: number }> = {}) {
   const [wishes, setWishes] = useState<WishType[]>([]);
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -223,6 +223,8 @@ export function WallOfWishes() {
     const timeB = new Date(b.Time).getTime();
     return timeB - timeA;
   });
+
+  const displayedWishes = limit ? sortedWishes.slice(0, limit) : sortedWishes;
 
   return (
     <section
@@ -418,7 +420,7 @@ export function WallOfWishes() {
 
           {/* Wishes List */}
           {loading ? (
-            Array.from({ length: 3 }).map((_, idx) => (
+            Array.from({ length: limit ?? 3 }).map((_, idx) => (
               <div
                 key={`loading-${idx}`}
                 className="relative h-[340px] w-[300px] animate-pulse"
@@ -443,7 +445,7 @@ export function WallOfWishes() {
               </div>
             ))
           ) : (
-            sortedWishes.map((wish, i) => {
+            displayedWishes.map((wish, i) => {
               const style = CARD_STYLES[i % CARD_STYLES.length];
               const storedHex = wish.CardColor ? extractHex(wish.CardColor) : null;
               const colorHex = storedHex || style.colorHex;
@@ -597,6 +599,28 @@ export function WallOfWishes() {
             })
           )}
         </div>
+
+        {limit && sortedWishes.length > limit && (
+          <div className="mt-12 flex justify-center">
+            <a
+              href="/wishes"
+              className="relative inline-flex h-16 min-w-48 items-center justify-center px-10 text-xl font-black uppercase text-[#231b14] drop-shadow-[0_8px_0_rgba(0,0,0,0.12)] transition hover:-translate-y-0.5 [font-family:var(--font-caveat),cursive]"
+            >
+              <svg
+                className="absolute inset-0 -z-10 size-full text-[#e3a83b]"
+                viewBox="0 0 210 82"
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                <path
+                  fill="currentColor"
+                  d="M13.4 54.8C4.8 40.5 8.4 19.1 26.4 11.3 43.8 3.8 69 7.5 88.1 5.4c28.2-3 48.7-6.7 70.7.9 15.9 5.5 22 17.5 24.5 28.1 14 2.2 19.4 13.2 12.5 24.1-8.3 13.2-30.2 13.6-47.8 12.7-25.1-1.3-44.1 3.8-69 5.1-27 1.4-51.1-.3-65.6-21.5Z"
+                />
+              </svg>
+              <span className="relative z-10">View All Wishes ✨</span>
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );
