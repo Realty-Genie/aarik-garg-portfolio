@@ -191,7 +191,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative z-10 -mt-12 bg-[oklch(92%_7%_74deg)] pt-8 pb-24 md:-mt-20">
+      <div className="relative z-10 -mt-12 bg-[oklch(92%_7%_74deg)] pt-8 md:-mt-20">
         <svg
           className="pointer-events-none absolute inset-x-0 -top-16 h-20 w-full text-[oklch(92%_7%_74deg)] md:-top-24 md:h-28"
           viewBox="0 0 1440 150"
