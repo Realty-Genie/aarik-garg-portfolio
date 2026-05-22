@@ -28,7 +28,7 @@ function CuteHeart() {
 export function Hero() {
   return (
     <section
-      className="relative isolate z-30 min-h-screen bg-[oklch(89%_9%_76deg)] text-[#21170f]"
+      className="relative isolate z-30 min-h-[88vh] bg-[oklch(89%_9%_76deg)] text-[#21170f]"
       aria-labelledby="hero-title"
     >
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(255,255,255,0.32),transparent_20rem),radial-gradient(circle_at_92%_12%,rgba(164,105,17,0.14),transparent_17rem),linear-gradient(rgba(89,59,26,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(89,59,26,0.035)_1px,transparent_1px)] bg-[size:auto,auto,44px_44px,44px_44px]" />
@@ -204,7 +204,7 @@ export function Hero() {
         </nav>
       </header>
 
-      <div className="relative z-10 mx-auto grid min-h-[calc(100vh-7rem)] max-w-7xl items-center gap-10 px-5 pb-16 pt-8 sm:px-8 md:grid-cols-[0.9fr_1.1fr] md:pb-20 md:pt-2 lg:px-10">
+      <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-5 pb-10 pt-8 sm:px-8 md:grid-cols-[0.9fr_1.1fr] md:pb-14 md:mb-14 md:pt-2 lg:px-10">
         <div className="max-w-xl pt-4 md:pt-12">
           <div className="mb-4 flex items-center gap-4 text-[#a56b26] [font-family:var(--font-caveat),cursive]">
             <span className="h-1 w-8 rotate-12 rounded-full bg-[#e5a40f]" />
@@ -275,7 +275,7 @@ export function Hero() {
         </div>
       </div>
 
-      <div className="relative z-10 -mt-12 bg-[oklch(92%_7%_74deg)] py-0 md:-mt-20">
+      <div className="relative z-10 -mt-12 bg-[oklch(92%_7%_74deg)] pt-8 pb-24 md:-mt-20">
         <svg
           className="pointer-events-none absolute inset-x-0 -top-16 h-20 w-full text-[oklch(92%_7%_74deg)] md:-top-24 md:h-28"
           viewBox="0 0 1440 150"
@@ -344,7 +344,7 @@ export function Hero() {
             of a beautiful story.
             <CuteHeart />
           </p>
-          <div className="relative max-sm:translate-y-3 translate-y-12 md:translate-y-20">
+          <div className="relative">
             <Image
               src="/lion.png"
               alt="Little lion mascot"
