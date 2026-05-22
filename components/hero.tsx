@@ -1,14 +1,5 @@
 import Image from "next/image";
 
-const navItems = ["Home", "My Story", "Milestones", "Gallery"];
-
-const navLinks: Record<string, string> = {
-  Home: "#",
-  "My Story": "#my-story",
-  Milestones: "#",
-  Gallery: "#",
-};
-
 function CuteHeart() {
   return (
     <span className="inline-block align-middle ml-2">
@@ -129,81 +120,6 @@ export function Hero() {
         </svg>
       </div>
 
-      <header className="relative z-20">
-        <div className="absolute inset-x-0 top-0 h-28 bg-[oklch(24%_3%_88deg)] shadow-[0_12px_28px_rgba(35,25,18,0.18)] md:h-32" />
-        <svg
-          className="pointer-events-none absolute inset-x-0 top-[6.5rem] h-12 w-full text-[oklch(24%_3%_88deg)] drop-shadow-[0_12px_14px_rgba(35,25,18,0.16)] md:top-[7.5rem] md:h-16"
-          viewBox="0 0 1440 120"
-          preserveAspectRatio="none"
-          aria-hidden="true"
-        >
-          <path
-            fill="currentColor"
-            d="M0,0H1440V48C1368,88,1284,32,1200,42C1116,52,1062,94,952,72C842,50,818,20,730,48C642,76,596,98,500,74C404,50,334,30,244,48C154,66,74,112,0,62Z"
-          />
-        </svg>
-        <nav className="relative mx-auto flex max-w-7xl items-start justify-between gap-6 px-5 pb-8 pt-4 sm:px-8 lg:px-10">
-          <a
-            href="#"
-            className="group leading-none"
-            aria-label="Aarik Garg home"
-          >
-            <span className="block -rotate-6 text-2xl text-[#f1b71c] [font-family:var(--font-caveat),cursive] sm:text-3xl">
-              ♕
-            </span>
-            <span className="block text-3xl font-bold tracking-wide text-white [font-family:var(--font-caveat),cursive] sm:text-4xl">
-              AARIK GARG
-            </span>
-            <span className="mt-1 block text-sm font-black uppercase tracking-[0.12em] text-[#f1b71c] [font-family:var(--font-caveat),cursive] sm:text-base">
-              My Little Journey
-            </span>
-          </a>
-
-          <div className="hidden items-center gap-9 pt-8 text-base text-white/92 md:flex">
-            {navItems.map((item) => (
-              <a
-                href={navLinks[item]}
-                key={item}
-                className="relative inline-flex items-center gap-3 font-medium transition hover:text-[#f3bc25] [font-family:var(--font-libertinus),serif]"
-              >
-                {item === "Home" ? (
-                  <span className="text-xl leading-none text-[#f3bc25]">✭</span>
-                ) : null}
-                {item}
-                {item === "Home" ? (
-                  <span className="absolute -bottom-3 left-8 h-1 w-[calc(100%-2rem)] rounded-full bg-[#f3bc25]" />
-                ) : null}
-              </a>
-            ))}
-          </div>
-
-          <div className="relative mt-4 hidden rotate-[-4deg] md:block">
-            <span className="pointer-events-none absolute -right-2 -top-6 z-20 rotate-12 text-5xl text-[#f3bc25]">
-              ♕
-            </span>
-            <a
-              href="#wishes"
-              className="relative inline-flex h-16 min-w-36 items-center justify-center px-8 text-lg font-bold text-[#21170f] drop-shadow-[0_10px_0_rgba(0,0,0,0.12)] transition hover:-translate-y-0.5 [font-family:var(--font-caveat),cursive]"
-            >
-              <svg
-                className="absolute inset-0 -z-10 size-full text-[#e3a83b]"
-                viewBox="0 0 176 76"
-                preserveAspectRatio="none"
-                aria-hidden="true"
-              >
-                <path
-                  fill="currentColor"
-                  d="M9.6 50.9C2.5 37.6 7 17.2 23.1 9.7 37.4 3 59.8 4.2 76.5 3.3c22.2-1.2 46.8-3 64.5 4.8 14 6.2 18.8 16.8 21.5 27.1 10.1 1.6 13.2 11.7 8 20.8-6.6 11.6-23.7 12.5-38.2 11.6-18.9-1.1-35.1 3.1-53.4 4.8-18.4 1.7-38.1.1-52.2-3.1C18.9 67.5 13.8 58.8 9.6 50.9Z"
-                />
-              </svg>
-              <span className="relative z-10">
-                Wishes <span className="ml-2 text-[#c9171f]">♡</span>
-              </span>
-            </a>
-          </div>
-        </nav>
-      </header>
-
       <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-10 px-5 pb-10 pt-8 sm:px-8 md:grid-cols-[0.9fr_1.1fr] md:pb-14 md:mb-14 md:pt-2 lg:px-10">
         <div className="max-w-xl pt-4 md:pt-12">
           <div className="mb-4 flex items-center gap-4 text-[#a56b26] [font-family:var(--font-caveat),cursive]">
@@ -302,7 +218,7 @@ export function Hero() {
           </span>
 
           <svg
-            className="absolute left-[4%] bottom-3 h-20 w-16 text-[#21170f]"
+            className="absolute left-[4%] bottom-3 h-2 w-16 text-[#21170f]"
             viewBox="0 0 70 86"
           >
             {Array.from({ length: 16 }).map((_, index) => (
@@ -317,7 +233,7 @@ export function Hero() {
           </svg>
 
           <svg
-            className="absolute right-[5%] top-8 h-20 w-24 text-[#d08b19]"
+            className="absolute right-[5%] top-8 h-2 w-24 text-[#d08b19]"
             viewBox="0 0 96 80"
           >
             <path

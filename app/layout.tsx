@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Libertinus_Serif, Caveat, Inter } from "next/font/google";
+import { Navbar } from "@/components/navbar";
 import "./globals.css";
 
 const libertinus = Libertinus_Serif({
@@ -33,7 +34,10 @@ export default function RootLayout({
       lang="en"
       className={`h-full antialiased ${libertinus.variable} ${caveat.variable} ${inter.variable}`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Navbar />
+        {children}
+      </body>
     </html>
   );
 }
