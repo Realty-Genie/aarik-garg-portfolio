@@ -28,7 +28,7 @@ export function Navbar() {
             <a
               href={navLinks[item]}
               key={item}
-              className="inline-flex items-center gap-2 font-medium transition hover:text-[#f3bc25] [font-family:var(--font-libertinus),serif]"
+              className="inline-flex items-center gap-2 font-bold transition hover:text-[#f3bc25] [font-family:var(--font-comic-neue),cursive]"
             >
               {item === "Home" ? (
                 <span className="text-lg leading-none text-[#f3bc25]">✭</span>

@@ -142,7 +142,7 @@ export function Hero() {
             <span className="text-[#c88716]">two months old.</span>
           </p>
 
-          <p className="mt-7 max-w-md text-lg leading-8 text-[#21170f] [font-family:var(--font-libertinus),serif]">
+          <p className="mt-7 max-w-md text-lg leading-8 text-[#21170f] [font-family:var(--font-comic-neue),cursive]">
             I may be tiny, but my dreams are big.
             <br /> This is the beginning of my journey,
             <br /> and I&apos;m so happy you&apos;re here with me.{" "}
@@ -150,7 +150,7 @@ export function Hero() {
           </p>
 
           <a
-            href="#wishes"
+            href="/send-wish"
             className="relative mt-9 inline-flex h-18 min-w-64 rotate-[-2deg] items-center justify-center px-10 text-2xl font-black uppercase text-[#ffc53b] drop-shadow-[0_8px_0_rgba(84,54,18,0.18)] transition hover:-translate-y-0.5 [font-family:var(--font-caveat),cursive]"
           >
             <svg
