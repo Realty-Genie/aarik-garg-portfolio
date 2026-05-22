@@ -63,7 +63,29 @@ export default function SendWishPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[oklch(89%_9%_76deg)] px-5 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
+    <main className="relative min-h-screen bg-[oklch(89%_9%_76deg)] px-5 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
+
+      {/* Doodles */}
+      <div className="pointer-events-none absolute inset-0 overflow-hidden text-[#d08b19]" aria-hidden="true">
+        <span className="absolute left-[3%] top-[12%] rotate-[-15deg] text-5xl leading-none [font-family:var(--font-caveat),cursive]">♡</span>
+        <span className="absolute left-[7%] top-[38%] rotate-[8deg] text-4xl leading-none opacity-60 [font-family:var(--font-caveat),cursive]">♕</span>
+        <span className="absolute left-[2%] bottom-[20%] rotate-[-10deg] text-6xl leading-none opacity-50 [font-family:var(--font-caveat),cursive]">♡</span>
+        <span className="absolute right-[4%] top-[10%] rotate-[12deg] text-5xl leading-none [font-family:var(--font-caveat),cursive]">♕</span>
+        <span className="absolute right-[2%] top-[42%] rotate-[-8deg] text-4xl leading-none opacity-70 [font-family:var(--font-caveat),cursive]">♡♡</span>
+        <span className="absolute right-[6%] bottom-[15%] rotate-[14deg] text-5xl leading-none opacity-55 [font-family:var(--font-caveat),cursive]">♕</span>
+        <span className="absolute left-[45%] top-[6%] rotate-[5deg] text-3xl leading-none opacity-50 [font-family:var(--font-caveat),cursive]">✦</span>
+        <span className="absolute left-[55%] bottom-[8%] rotate-[-12deg] text-4xl leading-none opacity-45 [font-family:var(--font-caveat),cursive]">♡</span>
+        <svg className="absolute left-[15%] bottom-[10%] h-16 w-16 opacity-30" viewBox="0 0 60 60">
+          <path d="M30 5v15M30 40v15M5 30h15M40 30h15" fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="3"/>
+          <path d="M12 12l8 8M40 40l8 8M48 12l-8 8M20 40l-8 8" fill="none" stroke="#e6a91d" strokeLinecap="round" strokeWidth="3"/>
+        </svg>
+        <svg className="absolute right-[12%] top-[28%] h-14 w-14 opacity-35" viewBox="0 0 60 60">
+          {Array.from({ length: 9 }).map((_, i) => (
+            <circle key={i} cx={10 + (i % 3) * 15} cy={10 + Math.floor(i / 3) * 15} r={i % 2 === 0 ? 2 : 1.3} fill="currentColor" opacity="0.8" />
+          ))}
+        </svg>
+      </div>
+
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-20">
 
         {/* Left — copy */}
