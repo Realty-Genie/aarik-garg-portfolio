@@ -153,29 +153,29 @@ export default function SendWishPage() {
 
                 <div className="relative z-10 flex flex-col gap-5">
                   <div>
-                    <label className="mb-1.5 block text-lg font-black text-[#21170f]/70">Your Name</label>
+                    <label className="mb-2 block text-2xl font-black text-[#21170f]/70">Your Name</label>
                     <input
                       type="text"
-                      placeholder="Your name…"
+                      placeholder="What do I call you? 😊"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       disabled={submitting}
                       required
-                      className={`w-full border-0 border-b-2 border-[#21170f]/20 bg-transparent px-1 py-1.5 text-xl outline-none placeholder-[#21170f]/35 transition-all focus:border-[#e3a83b] ${selectedTextColor.class}`}
+                      className={`w-full border-0 border-b-2 border-[#21170f]/20 bg-transparent px-1 py-2 text-2xl outline-none placeholder-[#21170f]/35 transition-all focus:border-[#e3a83b] ${selectedTextColor.class}`}
                     />
                   </div>
 
                   <div>
-                    <label className="mb-1.5 block text-lg font-black text-[#21170f]/70">Your Wish</label>
+                    <label className="mb-2 block text-2xl font-black text-[#21170f]/70">Your Wish</label>
                     <textarea
-                      placeholder="Write your wish here…"
+                      placeholder="Make it emotional, funny, chaotic, full of emojis — Aarik will love it all 💛"
                       value={wishText}
                       onChange={(e) => setWishText(e.target.value)}
                       disabled={submitting}
                       required
                       maxLength={250}
                       rows={6}
-                      className={`w-full resize-none border-0 bg-transparent px-1 py-1 text-xl leading-8 outline-none placeholder-[#21170f]/35 transition-all focus:placeholder-[#21170f]/20 ${selectedTextColor.class}`}
+                      className={`w-full resize-none border-0 bg-transparent px-1 py-1 text-2xl leading-9 outline-none placeholder-[#21170f]/35 transition-all focus:placeholder-[#21170f]/20 ${selectedTextColor.class}`}
                     />
                   </div>
 
@@ -215,9 +215,9 @@ export default function SendWishPage() {
                   <button
                     type="submit"
                     disabled={submitting || !name.trim() || !wishText.trim()}
-                    className="mt-1 w-full rounded-sm border-none bg-[#e3a83b] py-3 text-2xl font-black uppercase text-white shadow-[4px_4px_0_rgba(23,19,15,0.18)] transition hover:bg-[#c9922f] hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:bg-gray-300 cursor-pointer [font-family:var(--font-caveat),cursive]"
+                    className="mt-1 w-full rounded-sm border-none bg-[oklch(24%_3%_88deg)] py-3 text-2xl font-black uppercase text-[#f3bc25] shadow-[4px_4px_0_rgba(23,19,15,0.25)] transition hover:bg-[oklch(30%_3%_88deg)] hover:scale-[1.02] hover:-translate-y-0.5 active:scale-95 cursor-pointer [font-family:var(--font-caveat),cursive]"
                   >
-                    {submitting ? "Pinning…" : "Pin it! 📌"}
+                    {submitting ? "Sending…" : "Send"}
                   </button>
                 </div>
               </form>
