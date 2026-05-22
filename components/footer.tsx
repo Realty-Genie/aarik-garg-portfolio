@@ -26,10 +26,18 @@ function OpenEnvelopeIcon() {
 function BlobButton({
   children,
   className = "",
-}: Readonly<{ children: React.ReactNode; className?: string }>) {
+  href = "#",
+  onClick,
+}: Readonly<{
+  children: React.ReactNode;
+  className?: string;
+  href?: string;
+  onClick?: (e: React.MouseEvent) => void;
+}>) {
   return (
     <a
-      href="#"
+      href={href}
+      onClick={onClick}
       className={`relative inline-flex h-16 items-center justify-center px-9 text-base font-black uppercase text-white drop-shadow-[0_8px_0_rgba(0,0,0,0.14)] transition hover:-translate-y-0.5 [font-family:var(--font-caveat),cursive] ${className}`}
     >
       <svg
@@ -93,7 +101,7 @@ export function Footer() {
                 <br />
                 for me <span className="text-[#d08b19]">♡</span>
               </p>
-              <BlobButton className="mx-auto h-20 px-12 rotate-[2deg] md:mx-0">
+              <BlobButton href="#wishes" className="mx-auto h-20 px-12 rotate-[2deg] md:mx-0">
                 <span className="inline-flex items-center gap-2">
                   Send your wish <ArrowRight className="h-5 w-5" />
                 </span>
