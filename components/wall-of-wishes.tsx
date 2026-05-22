@@ -30,51 +30,42 @@ const TEXT_COLORS = [
   { name: "Chocolate Brown", class: "text-[#543612]", hex: "#543612" }
 ];
 
-const CARD_STYLES = [
-  {
-    color: "bg-[#f3e3c5]",
-    tape: "left-5 -top-4 rotate-[-10deg]",
-    rotate: "rotate-[-3deg]",
-    heart: "text-[#d72422]",
-  },
-  {
-    color: "bg-[#d8c8e4]",
-    tape: "left-8 -top-5 rotate-[8deg]",
-    rotate: "rotate-[2deg]",
-    heart: "text-[#7552a3]",
-  },
-  {
-    color: "bg-[#f8f3e8]",
-    tape: "right-8 -top-4 rotate-[-3deg]",
-    rotate: "rotate-[-1deg]",
-    heart: "text-[#0d73a8]",
-    grid: true,
-  },
-  {
-    color: "bg-[#f4d55b]",
-    tape: "left-7 -top-4 rotate-[-9deg]",
-    rotate: "rotate-[3deg]",
-    heart: "text-[#9a6a12]",
-  },
-  {
-    color: "bg-[#f5c6c6]",
-    tape: "left-6 -top-4 rotate-[6deg]",
-    rotate: "rotate-[-2deg]",
-    heart: "text-[#c22d2d]",
-  },
-  {
-    color: "bg-[#c5e3f3]",
-    tape: "right-6 -top-5 rotate-[-8deg]",
-    rotate: "rotate-[4deg]",
-    heart: "text-[#1d72b8]",
-  },
-  {
-    color: "bg-[#c5f3d8]",
-    tape: "left-5 -top-4 rotate-[-5deg]",
-    rotate: "rotate-[-4deg]",
-    heart: "text-[#1da05c]",
-  }
+// Hand-torn paper note silhouettes — viewBox "0 0 300 340"
+const PAPER_NOTE_PATHS = [
+  "M37 20 C82 18 129 24 166 19 C206 14 242 19 264 20 C269 58 261 96 266 137 C272 185 265 225 270 308 C222 312 178 305 136 310 C91 315 59 312 29 309 C24 253 31 207 26 159 C21 108 29 68 37 20 Z",
+  "M31 28 C73 13 111 21 151 17 C193 13 229 23 267 20 C264 63 270 104 263 149 C256 195 267 238 262 315 C219 310 178 319 132 312 C90 306 54 314 28 309 C34 248 25 204 31 156 C38 101 25 64 31 28 Z",
+  "M39 16 C82 20 116 13 161 19 C202 25 239 17 268 22 C265 68 262 105 267 151 C272 198 262 236 268 310 C228 314 184 309 139 315 C94 321 58 313 31 310 C28 262 34 218 29 165 C23 113 35 73 39 16 Z",
+  "M34 24 C74 21 117 24 158 18 C200 13 234 22 264 20 C270 70 263 114 267 162 C272 213 265 256 263 311 C222 306 179 314 134 309 C90 304 59 313 31 307 C33 258 27 209 32 158 C37 105 26 65 34 24 Z",
 ];
+
+const CARD_STYLES = [
+  { colorHex: "#f3e3c5", heart: "text-[#d72422]", doodle: "heart" },
+  { colorHex: "#d8c8e4", heart: "text-[#7552a3]", doodle: "sun" },
+  { colorHex: "#f8f3e8", heart: "text-[#0d73a8]", doodle: "heart" },
+  { colorHex: "#f4d55b", heart: "text-[#9a6a12]", doodle: "crown" },
+  { colorHex: "#f5c6c6", heart: "text-[#c22d2d]", doodle: "smile" },
+  { colorHex: "#c5e3f3", heart: "text-[#1d72b8]", doodle: "spark" },
+  { colorHex: "#c5f3d8", heart: "text-[#1da05c]", doodle: "heart" },
+];
+
+function extractHex(colorClass: string): string | null {
+  const match = colorClass.match(/#[0-9a-fA-F]{3,8}/);
+  return match ? match[0] : null;
+}
+
+function getStringField(
+  item: Record<string, unknown>,
+  keys: string[],
+  fallback: string
+) {
+  for (const key of keys) {
+    const value = item[key];
+    if (typeof value === "string") return value;
+    if (typeof value === "number") return String(value);
+  }
+
+  return fallback;
+}
 
 function BlobButton({
   children,
@@ -114,7 +105,7 @@ export function WallOfWishes() {
 
   const [name, setName] = useState("");
   const [wishText, setWishText] = useState("");
-  
+
   const [selectedCardColor, setSelectedCardColor] = useState(CARD_COLORS[0]);
   const [selectedTextColor, setSelectedTextColor] = useState(TEXT_COLORS[0]);
 
@@ -135,14 +126,13 @@ export function WallOfWishes() {
           ? data.wishes
           : [];
 
-        // Normalize keys robustly to match any header capitalization
-        const normalized = rawWishes.map((item: any) => ({
-          Id: item.Id ?? item.id ?? item.ID ?? String(Math.random()),
-          Name: item.Name ?? item.name ?? item.NAME ?? "Anonymous",
-          Wish: item.Wish ?? item.wish ?? item.WISH ?? "",
-          Time: item.Time ?? item.time ?? item.TIME ?? new Date().toISOString(),
-          CardColor: item.cardColor ?? item.cardcolor ?? item.CARDCOLOR ?? "",
-          TextColor: item.textColor ?? item.textcolor ?? item.TEXTCOLOR ?? "",
+        const normalized = rawWishes.map((item: Record<string, unknown>) => ({
+          Id: getStringField(item, ["Id", "id", "ID"], String(Math.random())),
+          Name: getStringField(item, ["Name", "name", "NAME"], "Anonymous"),
+          Wish: getStringField(item, ["Wish", "wish", "WISH"], ""),
+          Time: getStringField(item, ["Time", "time", "TIME"], new Date().toISOString()),
+          CardColor: getStringField(item, ["cardColor", "cardcolor", "CARDCOLOR"], ""),
+          TextColor: getStringField(item, ["textColor", "textcolor", "TEXTCOLOR"], ""),
         }));
 
         setWishes(normalized);
@@ -181,9 +171,7 @@ export function WallOfWishes() {
         setSelectedCardColor(CARD_COLORS[0]);
         setSelectedTextColor(TEXT_COLORS[0]);
         setSuccess(true);
-        // Refresh list
         await fetchWishes();
-        // Hide success message after 4 seconds
         setTimeout(() => {
           setSuccess(false);
         }, 4000);
@@ -200,7 +188,11 @@ export function WallOfWishes() {
   }
 
   useEffect(() => {
-    fetchWishes();
+    const timeoutId = window.setTimeout(() => {
+      void fetchWishes();
+    }, 0);
+
+    return () => window.clearTimeout(timeoutId);
   }, []);
 
   const handleWriteWishClick = () => {
@@ -210,7 +202,6 @@ export function WallOfWishes() {
     }, 500);
   };
 
-  // Helper to format date string nicely
   function formatDate(dateStr: string) {
     try {
       const d = new Date(dateStr);
@@ -227,7 +218,6 @@ export function WallOfWishes() {
     }
   }
 
-  // Sort wishes chronologically or reverse-chronologically (newest first)
   const sortedWishes = [...wishes].sort((a, b) => {
     const timeA = new Date(a.Time).getTime();
     const timeB = new Date(b.Time).getTime();
@@ -321,15 +311,22 @@ export function WallOfWishes() {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-8 justify-center items-stretch w-full max-w-7xl mx-auto">
-          
+        <div className="flex flex-wrap gap-10 justify-center items-start w-full max-w-7xl mx-auto">
+
           {/* Interactive Wish Form Card */}
           <div
             ref={formRef}
-            className={`relative w-[300px] min-h-[410px] p-7 text-[#21170f] shadow-[0_12px_28px_-6px_rgba(0,0,0,0.35),0_4px_12px_-2px_rgba(0,0,0,0.22)] rounded-2xl ${selectedCardColor.class} border border-[#21170f]/10 rotate-[1deg] [font-family:var(--font-caveat),cursive] transition-all duration-300 hover:rotate-0 hover:scale-[1.03] hover:shadow-[0_20px_35px_-8px_rgba(0,0,0,0.45)] flex flex-col justify-between`}
+            className={`relative w-[300px] min-h-[410px] p-7 text-[#21170f] shadow-[0_18px_28px_-14px_rgba(0,0,0,0.65),0_7px_12px_-8px_rgba(0,0,0,0.45)] rounded-[4px] ${selectedCardColor.class} border border-[#21170f]/10 rotate-[1deg] [font-family:var(--font-caveat),cursive] transition-all duration-300 hover:rotate-0 hover:scale-[1.03] hover:shadow-[0_24px_34px_-16px_rgba(0,0,0,0.68),0_10px_16px_-10px_rgba(0,0,0,0.42)] flex flex-col justify-between`}
           >
-            <span className="absolute left-1/2 -translate-x-1/2 -top-3.5 h-6 w-24 bg-white/35 backdrop-blur-[1px] border border-white/20 shadow-[0_2px_4px_rgba(0,0,0,0.05)] rotate-[-1.5deg] rounded-sm pointer-events-none z-10" />
-            <span className="pointer-events-none absolute inset-0 rounded-2xl bg-[linear-gradient(rgba(227,168,59,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(227,168,59,0.06)_1px,transparent_1px)] bg-[size:16px_16px]" />
+            <span
+              className="absolute left-1/2 -translate-x-1/2 -top-3.5 h-7 w-28 border border-white/25 shadow-[0_2px_5px_rgba(0,0,0,0.09)] rotate-[-1.5deg] rounded-[2px] pointer-events-none z-10"
+              style={{
+                background:
+                  "repeating-linear-gradient(105deg, rgba(255,255,232,0.78) 0 9px, rgba(255,242,179,0.58) 9px 18px)",
+              }}
+            />
+            <span className="pointer-events-none absolute inset-0 rounded-[4px] bg-[linear-gradient(rgba(35,27,20,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.1)_1px,transparent_1px)] bg-[size:16px_16px]" />
+            <span className="pointer-events-none absolute right-0 top-0 h-12 w-12 rounded-bl-[3px] bg-[linear-gradient(135deg,rgba(255,255,255,0.55)_0_49%,rgba(35,27,20,0.12)_50%,rgba(255,255,255,0.18)_56%)]" />
 
             {success ? (
               <div className="flex flex-col items-center justify-center h-full text-center py-6">
@@ -345,7 +342,7 @@ export function WallOfWishes() {
                   <h3 className="text-2xl font-black text-[#e3a83b] mb-3 text-center uppercase tracking-wider">
                     Pin a Wish ✍️
                   </h3>
-                  
+
                   <div className="flex flex-col gap-3">
                     <input
                       ref={nameInputRef}
@@ -357,7 +354,7 @@ export function WallOfWishes() {
                       required
                       className={`w-full bg-white/20 focus:bg-white/35 backdrop-blur-[1px] border border-[#21170f]/15 focus:border-[#e3a83b] focus:ring-1 focus:ring-[#e3a83b] outline-none text-2.5xl py-1 px-3.5 rounded-xl placeholder-[#21170f]/40 [font-family:var(--font-caveat),cursive] transition-all duration-200 ${selectedTextColor.class}`}
                     />
-                    
+
                     <textarea
                       placeholder="Write your blessing or wish..."
                       value={wishText}
@@ -369,9 +366,7 @@ export function WallOfWishes() {
                     />
                   </div>
 
-                  {/* Selectors Panel */}
                   <div className="mt-3.5 bg-white/20 border border-[#21170f]/5 p-3 rounded-xl flex flex-col gap-3">
-                    {/* Card Color Selector */}
                     <div>
                       <p className="text-base font-black mb-1.5 text-[#21170f]/60 leading-none">Card Color:</p>
                       <div className="flex flex-wrap gap-2">
@@ -390,7 +385,6 @@ export function WallOfWishes() {
                       </div>
                     </div>
 
-                    {/* Text Color Selector */}
                     <div>
                       <p className="text-base font-black mb-1.5 text-[#21170f]/60 leading-none">Text Color:</p>
                       <div className="flex flex-wrap gap-2">
@@ -422,52 +416,181 @@ export function WallOfWishes() {
             )}
           </div>
 
-          {/* Wishes List (Fetched + Defaults) */}
+          {/* Wishes List */}
           {loading ? (
-            // Shimmer / skeleton states for loading wishes
             Array.from({ length: 3 }).map((_, idx) => (
               <div
                 key={`loading-${idx}`}
-                className="relative w-[300px] min-h-[320px] p-7 bg-[#faf6ee]/10 border border-white/10 rounded-2xl animate-pulse flex flex-col justify-between"
+                className="relative h-[340px] w-[300px] animate-pulse"
+                style={{ filter: "drop-shadow(0px 12px 14px rgba(0,0,0,0.32))" }}
               >
-                <div className="h-4 bg-white/20 rounded w-3/4 mb-3" />
-                <div className="h-4 bg-white/20 rounded w-5/6 mb-3" />
-                <div className="h-4 bg-white/20 rounded w-2/3" />
-                <div className="mt-8">
-                  <div className="h-4 bg-white/20 rounded w-1/3 mb-2" />
-                  <div className="h-3 bg-white/10 rounded w-1/4" />
+                <svg viewBox="0 0 300 340" className="absolute inset-0 h-full w-full" overflow="visible" aria-hidden="true">
+                  <path
+                    d={PAPER_NOTE_PATHS[idx % PAPER_NOTE_PATHS.length]}
+                    fill="rgba(255,255,255,0.18)"
+                    stroke="rgba(255,255,255,0.18)"
+                    strokeWidth="2"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <div className="absolute inset-x-11 top-20 z-10 flex flex-col gap-3">
+                  <div className="h-4 w-5/6 rounded bg-white/20" />
+                  <div className="h-4 w-4/5 rounded bg-white/20" />
+                  <div className="h-4 w-3/4 rounded bg-white/20" />
+                  <div className="mt-auto h-4 w-1/2 rounded bg-white/15" />
+                  <div className="h-3 w-1/3 rounded bg-white/10" />
                 </div>
               </div>
             ))
           ) : (
             sortedWishes.map((wish, i) => {
               const style = CARD_STYLES[i % CARD_STYLES.length];
-              const cardColor = wish.CardColor || style.color;
+              const storedHex = wish.CardColor ? extractHex(wish.CardColor) : null;
+              const colorHex = storedHex || style.colorHex;
               const textColor = wish.TextColor || "text-[#21170f]";
-              const rotations = ["rotate-[-2deg]", "rotate-[1deg]", "rotate-[-1deg]", "rotate-[2deg]"];
+              const rotations = ["rotate-[-2deg]", "rotate-[1.5deg]", "rotate-[-1deg]", "rotate-[2deg]", "rotate-[-1.5deg]", "rotate-[1deg]"];
               const rotateClass = rotations[i % rotations.length];
-              
+              const shapePath = PAPER_NOTE_PATHS[i % PAPER_NOTE_PATHS.length];
+              const clipId = `paper-clip-${i}`;
+              const textureId = `paper-texture-${i}`;
+              const tapeRotation = ["rotate-[-12deg]", "rotate-[9deg]", "rotate-[-4deg]", "rotate-[11deg]"][i % 4];
+              const tapePosition = [
+                "left-5 -top-2",
+                "right-8 -top-3",
+                "left-1/2 -translate-x-1/2 -top-3",
+                "left-7 -top-2",
+              ][i % 4];
+              const hasGrid = i % 4 === 2;
+
               return (
                 <article
                   key={wish.Id || `${wish.Name}-${i}`}
-                  className={`relative w-[300px] min-h-[320px] p-7 ${textColor} shadow-[0_12px_28px_-6px_rgba(0,0,0,0.3),0_4px_12px_-2px_rgba(0,0,0,0.2)] ${cardColor} border border-[#21170f]/10 ${rotateClass} rounded-2xl [font-family:var(--font-caveat),cursive] transition-all duration-300 hover:rotate-0 hover:scale-[1.03] hover:shadow-[0_20px_35px_-8px_rgba(0,0,0,0.4)] flex flex-col justify-between`}
+                  className={`relative h-[340px] w-[300px] ${rotateClass} [font-family:var(--font-caveat),cursive] transition-all duration-300 hover:rotate-0 hover:scale-[1.035]`}
                 >
-                  <span className="absolute left-1/2 -translate-x-1/2 -top-3.5 h-6 w-24 bg-white/35 backdrop-blur-[1px] border border-white/20 shadow-[0_2px_4px_rgba(0,0,0,0.05)] rotate-[-2deg] rounded-sm pointer-events-none z-10" />
-                  <span className="pointer-events-none absolute inset-0 rounded-2xl bg-[linear-gradient(rgba(33,23,15,0.06)_1px,transparent_1px)] bg-[size:100%_28px]" />
-                  
-                  {/* Decorative soft watermark */}
-                  <div className="absolute right-5 bottom-5 w-16 h-16 pointer-events-none opacity-[0.06] text-[#21170f] z-0">
-                    <svg viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7zm3 14h14v2H5v-2z" />
-                    </svg>
-                  </div>
+                  <span
+                    className={`absolute z-20 h-10 w-24 rounded-[2px] border border-white/15 bg-[#d8bd7a]/65 shadow-[0_3px_5px_rgba(0,0,0,0.16)] ${tapePosition} ${tapeRotation}`}
+                    style={{
+                      background:
+                        "repeating-linear-gradient(105deg, rgba(222,190,116,0.72) 0 10px, rgba(244,221,158,0.46) 10px 20px)",
+                    }}
+                  />
 
-                  <p className="relative text-[22px] leading-[28px] break-words whitespace-pre-wrap z-10">{wish.Wish}</p>
-                  <div className="relative mt-6 text-lg z-10 flex flex-col gap-0.5">
-                    <p className="font-bold">– {wish.Name} <span className={style.heart}>♥</span></p>
-                    <p className="text-sm opacity-80 [font-family:var(--font-inter),sans-serif]">
-                      {formatDate(wish.Time)}
+                  {i % 4 === 1 && (
+                    <svg
+                      className="absolute left-10 -top-1 z-30 h-16 w-12 rotate-[-9deg] text-[#5d4f87]"
+                      viewBox="0 0 52 76"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M31 7 C18 7 14 20 14 31 L14 55 C14 69 35 69 35 54 L35 21 C35 9 20 8 20 22 L20 52"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeLinecap="round"
+                        strokeWidth="5"
+                      />
+                    </svg>
+                  )}
+
+                  <svg
+                    viewBox="0 0 300 340"
+                    className="absolute inset-0 h-full w-full"
+                    overflow="visible"
+                    style={{
+                      filter: "drop-shadow(0px 14px 16px rgba(0,0,0,0.32)) drop-shadow(0px 4px 4px rgba(0,0,0,0.18))",
+                    }}
+                    aria-hidden="true"
+                  >
+                    <defs>
+                      <clipPath id={clipId}>
+                        <path d={shapePath} />
+                      </clipPath>
+                      <pattern id={textureId} width="18" height="18" patternUnits="userSpaceOnUse">
+                        <circle cx="3" cy="5" r="0.8" fill="rgba(35,27,20,0.07)" />
+                        <circle cx="12" cy="8" r="0.6" fill="rgba(35,27,20,0.05)" />
+                        <path d="M1 14 L8 12 M12 16 L17 13" stroke="rgba(255,255,255,0.18)" strokeWidth="1" strokeLinecap="round" />
+                      </pattern>
+                    </defs>
+                    <path
+                      d={shapePath}
+                      fill={colorHex}
+                      stroke="rgba(35,27,20,0.18)"
+                      strokeWidth="2"
+                      strokeLinejoin="round"
+                    />
+                    <path d={shapePath} fill={`url(#${textureId})`} clipPath={`url(#${clipId})`} />
+
+                    {hasGrid && (
+                      <g clipPath={`url(#${clipId})`} opacity="0.16">
+                        {Array.from({ length: 11 }).map((_, row) => (
+                          <line key={`h-${row}`} x1="32" x2="268" y1={44 + row * 22} y2={44 + row * 22} stroke="#21170f" strokeWidth="1" />
+                        ))}
+                        {Array.from({ length: 9 }).map((_, col) => (
+                          <line key={`v-${col}`} x1={52 + col * 24} x2={52 + col * 24} y1="30" y2="307" stroke="#21170f" strokeWidth="1" />
+                        ))}
+                      </g>
+                    )}
+
+                    {style.doodle === "heart" && (
+                      <path d="M224 53 C229 43 244 46 241 61 C239 72 225 79 217 84 C211 77 199 67 201 57 C204 44 218 45 224 53 Z" fill="none" stroke="currentColor" strokeWidth="2.5" />
+                    )}
+                    {style.doodle === "sun" && (
+                      <g transform="translate(226 116)" stroke="currentColor" strokeLinecap="round" strokeWidth="2.4">
+                        <circle cx="0" cy="0" r="12" fill="none" />
+                        <path d="M0 -23 V-17 M0 17 V23 M-23 0 H-17 M17 0 H23 M-16 -16 L-12 -12 M16 16 L12 12 M16 -16 L12 -12 M-16 16 L-12 12" />
+                      </g>
+                    )}
+                    {style.doodle === "crown" && (
+                      <path d="M207 76 L216 52 L231 70 L247 50 L253 80 Z M210 89 H253" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.7" />
+                    )}
+                    {style.doodle === "smile" && (
+                      <g transform="translate(226 96)" stroke="currentColor" strokeLinecap="round" strokeWidth="2.5">
+                        <circle cx="0" cy="0" r="15" fill="none" />
+                        <path d="M-6 -3 H-5 M6 -3 H7 M-7 6 C-2 12 6 11 10 5" />
+                      </g>
+                    )}
+                    {style.doodle === "spark" && (
+                      <g transform="translate(224 62)" stroke="currentColor" strokeLinecap="round" strokeWidth="2.7">
+                        <path d="M0 -18 V18 M-18 0 H18" />
+                        <path d="M-12 -12 L12 12 M12 -12 L-12 12" opacity="0.5" />
+                      </g>
+                    )}
+
+                    <g clipPath={`url(#${clipId})`} opacity="0.09">
+                      {Array.from({ length: 46 }).map((_, dot) => (
+                        <circle
+                          key={dot}
+                          cx={30 + ((dot * 37) % 238)}
+                          cy={34 + ((dot * 53) % 274)}
+                          r={dot % 5 === 0 ? 1.1 : 0.65}
+                          fill="#21170f"
+                        />
+                      ))}
+                    </g>
+                  </svg>
+
+                  {/* Content */}
+                  <div
+                    className={`absolute inset-x-12 top-[66px] z-10 flex h-[220px] flex-col justify-between overflow-hidden ${textColor}`}
+                  >
+                    <p
+                      className="flex-1 break-words text-[21px] leading-[30px]"
+                      style={{
+                        display: "-webkit-box",
+                        WebkitLineClamp: 6,
+                        WebkitBoxOrient: "vertical",
+                        overflow: "hidden",
+                      }}
+                    >
+                      {wish.Wish}
                     </p>
+                    <div className="flex flex-shrink-0 flex-col gap-0.5 text-[18px]">
+                      <p className="font-bold">
+                        – {wish.Name} <span className={style.heart}>♥</span>
+                      </p>
+                      <p className="text-sm opacity-75 [font-family:var(--font-inter),sans-serif]">
+                        {formatDate(wish.Time)}
+                      </p>
+                    </div>
                   </div>
                 </article>
               );
