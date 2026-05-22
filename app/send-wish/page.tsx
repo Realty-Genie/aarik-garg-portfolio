@@ -63,7 +63,7 @@ export default function SendWishPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[oklch(89%_9%_76deg)] px-5 py-16 sm:px-8 lg:px-10">
+    <main className="min-h-screen bg-[oklch(89%_9%_76deg)] px-5 py-20 sm:px-10 sm:py-24 lg:px-16 lg:py-28">
       <div className="mx-auto grid max-w-6xl items-center gap-12 lg:grid-cols-2 lg:gap-20">
 
         {/* Left — copy */}
@@ -83,9 +83,20 @@ export default function SendWishPage() {
 
           <a
             href="/wishes"
-            className="mt-10 inline-block text-base text-[#7b4d2a] underline underline-offset-4 [font-family:var(--font-comic-neue),cursive] hover:text-[#c88716]"
+            className="relative isolate mt-10 inline-flex h-14 items-center justify-center px-8 text-lg font-black text-[#21170f] transition hover:-translate-y-0.5 [font-family:var(--font-caveat),cursive]"
           >
-            ← View All Wishes 
+            <svg
+              className="absolute inset-0 -z-10 size-full text-[#e3a83b]"
+              viewBox="0 0 210 62"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path
+                fill="currentColor"
+                d="M13.4 42C4.8 30.5 8.4 14.1 26.4 8.3 43.8 2.8 69 5.5 88.1 3.4c28.2-3 48.7-4.7 70.7.9 15.9 4.5 22 13.5 24.5 22.1 14 2.2 19.4 11.2 12.5 20.1-8.3 11.2-30.2 11.6-47.8 10.7-25.1-1.3-44.1 3.8-69 5.1-27 1.4-51.1-.3-65.6-20.3Z"
+              />
+            </svg>
+            <span className="relative z-10"> View All Wishes</span>
           </a>
         </div>
 
