@@ -2,6 +2,13 @@ import Image from "next/image";
 
 const navItems = ["Home", "My Story", "Milestones", "Gallery"];
 
+const navLinks: Record<string, string> = {
+  Home: "#",
+  "My Story": "#my-story",
+  Milestones: "#",
+  Gallery: "#",
+};
+
 function CuteHeart() {
   return (
     <span className="inline-block align-middle ml-2">
@@ -155,7 +162,7 @@ export function Hero() {
           <div className="hidden items-center gap-9 pt-8 text-base text-white/92 md:flex">
             {navItems.map((item) => (
               <a
-                href="#"
+                href={navLinks[item]}
                 key={item}
                 className="relative inline-flex items-center gap-3 font-medium transition hover:text-[#f3bc25] [font-family:var(--font-inter),sans-serif]"
               >
@@ -175,7 +182,7 @@ export function Hero() {
               ♕
             </span>
             <a
-              href="#"
+              href="#wishes"
               className="relative inline-flex h-16 min-w-36 items-center justify-center px-8 text-lg font-bold text-[#21170f] drop-shadow-[0_10px_0_rgba(0,0,0,0.12)] transition hover:-translate-y-0.5 [font-family:var(--font-caveat),cursive]"
             >
               <svg
@@ -227,7 +234,7 @@ export function Hero() {
           </p>
 
           <a
-            href="#"
+            href="#wishes"
             className="relative mt-9 inline-flex h-18 min-w-64 rotate-[-2deg] items-center justify-center px-10 text-2xl font-black uppercase text-[#ffc53b] drop-shadow-[0_8px_0_rgba(84,54,18,0.18)] transition hover:-translate-y-0.5 [font-family:var(--font-caveat),cursive]"
           >
             <svg
