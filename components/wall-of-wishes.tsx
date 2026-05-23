@@ -50,6 +50,7 @@ function getStringField(
 
 
 export function WallOfWishes({ limit, showWave = true }: Readonly<{ limit?: number; showWave?: boolean }> = {}) {
+  const isFullPage = !limit;
   const [wishes, setWishes] = useState<WishType[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -265,7 +266,7 @@ These are my people. My tiny internet scrapbook of love, blessings, chaos, emoji
               return (
                 <article
                   key={wish.Id || `${wish.Name}-${i}`}
-                  className={`relative h-[340px] w-[300px] ${rotateClass} [font-family:var(--font-caveat),cursive] transition-all duration-300 hover:rotate-0 hover:scale-[1.035]`}
+                  className={`relative w-[300px] ${isFullPage ? "pt-[66px] px-12 pb-10" : "h-[340px]"} ${rotateClass} [font-family:var(--font-caveat),cursive] transition-all duration-300 hover:rotate-0 hover:scale-[1.035]`}
                 >
                   <span
                     className={`absolute z-20 h-10 w-24 rounded-[2px] border border-white/15 bg-[#d8bd7a]/65 shadow-[0_3px_5px_rgba(0,0,0,0.16)] ${tapePosition} ${tapeRotation}`}
@@ -295,6 +296,7 @@ These are my people. My tiny internet scrapbook of love, blessings, chaos, emoji
                     viewBox="0 0 300 340"
                     className="absolute inset-0 h-full w-full"
                     overflow="visible"
+                    preserveAspectRatio={isFullPage ? "none" : "xMidYMid meet"}
                     style={{
                       filter: "drop-shadow(0px 14px 16px rgba(0,0,0,0.32)) drop-shadow(0px 4px 4px rgba(0,0,0,0.18))",
                     }}
@@ -370,11 +372,11 @@ These are my people. My tiny internet scrapbook of love, blessings, chaos, emoji
 
                   {/* Content */}
                   <div
-                    className={`absolute inset-x-12 top-[66px] z-10 flex h-[220px] flex-col justify-between overflow-hidden ${textColor}`}
+                    className={`z-10 flex flex-col ${isFullPage ? "relative gap-3" : "absolute inset-x-12 top-[66px] h-[220px] justify-between overflow-hidden"} ${textColor}`}
                   >
                     <p
-                      className="flex-1 break-words text-[21px] leading-[30px]"
-                      style={{
+                      className="break-words text-[21px] leading-[30px]"
+                      style={isFullPage ? {} : {
                         display: "-webkit-box",
                         WebkitLineClamp: 6,
                         WebkitBoxOrient: "vertical",
