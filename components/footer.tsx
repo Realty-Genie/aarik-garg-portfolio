@@ -135,12 +135,12 @@ export function Footer() {
             </a>
           </div>
 
-          <div className="text-sm leading-7 [font-family:var(--font-libertinus),serif]">
+          <div className="text-sm leading-7 [font-family:var(--font-comic-neue),inverted]">
             <p>
               Made with love for AARIK GARG{" "}
               <span className="text-[#9d6a13]">♥</span>
             </p>
-            <p>© 2025 Aarik&apos;s Journey. All rights reserved.</p>
+            <p>© 2026 Aarik&apos;s Journey. Made by Valstrand Solutions.</p>
           </div>
 
           <a
